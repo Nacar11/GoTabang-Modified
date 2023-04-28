@@ -1,0 +1,49 @@
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+
+
+body {
+	background: linear-gradient(-45deg, #1e114d, #095746, #1f3c88, #042715);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+
+img{
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 20%;
+  left: 0;
+  right: 0;
+  width:25%;
+  height:25%;
+  
+
+}
+
+button{
+  position: absolute;
+  margin: auto;
+  top: 20%;
+  bottom:0;
+  left: 1%;
+  right: 0;
+  width: 10%;
+  height:5%;
+  
+
+}
+

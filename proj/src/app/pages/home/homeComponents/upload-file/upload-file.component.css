@@ -1,0 +1,59 @@
+scan-file {
+  display: none;
+}
+img{
+  width: 40%;
+  align-items: center;
+}
+
+img.post-disaster{
+  width: 17rem;
+}
+
+.btn{
+  margin: 0px 10px;
+}
+
+.text-center{
+  margin: 10px;
+  padding: 10px;
+  align-items: left;
+  text-align: center;
+  height: 500px;
+}
+
+form-control{
+  background-color: darkslategray;
+}
+/* .upload-header{
+  padding: 10px;
+  color: white;
+} */
+
+.upload-header{
+  margin-left: 0px;
+margin-right: 3rem;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size:small;
+}
+
+.upload-section{
+  display: flex;
+margin-top: 2rem;
+}
+
+.upload-firebase{
+  height: 20rem;
+width: 60%;
+border-style: dashed;
+border-color: wheat;
+margin-left: 20px;
+margin-right: 20px;
+padding: 0px 0px 10px 5px;
+}
+
+.upload-firebase-title{
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}

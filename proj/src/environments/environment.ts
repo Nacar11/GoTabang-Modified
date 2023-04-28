@@ -20,7 +20,7 @@ export const environment = {
     clientId,
     authorizationParams: {
       ...(audience && audience !== 'YOUR_API_IDENTIFIER' ? { audience } : null),
-      redirect_uri: window.location.origin,
+      redirect_uri: "http://localhost:4200/homescreen/dashboard",
     },
     errorPath,
   },

@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@500&family=Rubik+Glitch&display=swap');
+
+/* General */
+mat-list-item{
+  background-color: rgb(191, 191, 191);
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+mat-list-item.post-disaster-list{
+ margin-right: 10px;
+}
+
+.card-holder{
+  width: 68%;
+}
+
+.card-description{
+  margin: 2% 0% 0% 5%;
+  padding: 0% 0% 0% 0%;
+  text-align: left;
+  width: 80%;
+  color: rgb(182, 180, 180);
+}
+
+:host ::ng-deep #mat-tab-content-0-1{
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+:host ::ng-deep #mat-tab-content-0-1{
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+:host ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content {
+  padding: 10%;
+}
+
+.info-card {
+  box-shadow: none;
+  text-shadow: none;
+  border-style: none;
+}
+
+.info-card.info {
+  background-color: rgb(226, 242, 247);
+  width: 80%;
+  height: 80%;
+}
+
+.info-card.warning {
+  background-color: rgb(255, 194, 194);
+  width: 80%;
+  height: 80%;
+}
+
+.mat-list-scan{
+  margin: 7.5% 0% 0% 0%;
+  text-align: left;
+  overflow: hidden;
+  padding-bottom: 20%;
+}
+
+.mat-card-content-scan{
+  width: 500px;
+  height: 200px;
+  margin: 10px 10px;
+  overflow: hidden;
+}
+
+.scan-file{
+  margin: 0% 5% 0% 2%;
+  overflow: hidden;
+  height: 500px;
+}
+.scan-icon {
+  width: 75%;
+  margin-left: 5%;
+}
+
+.scan-header{
+  margin: 0% 0% 0% 5.5%;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: large;
+}
+
+.scan-card {
+  margin: 30px 0px 40px 40px;
+  width: 600px;
+  height: 290px;
+}
+
+/* Disaster Classification */
+.scan-header.disaster-classification{
+  margin-top: 5%;
+}
+
+.scan-file.classification{
+  display: flex;
+  align-content: center;
+}
+
+.card-image.classification{
+  height: 90%;
+}
+
+/* Damage Assessment */
+
+.mat-list-scan.post-disaster{
+  display: flex;
+  margin-left: 3%;
+
+}
+
+.scan-file.post-disaster{
+  align-content: center;
+}
+
+.card-image.post-disaster{
+  width: 50%;
+  margin-left: 23%;
+}
+

@@ -6,8 +6,11 @@ import json from 'highlight.js/lib/languages/json';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -19,10 +22,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LevelFileComponent } from './pages/home/homeComponents/level-file/level-file.component';
+import { UploadDialogComponent } from './pages/home/homeComponents/upload-dialog/upload-dialog.component';
+import { UploadFileComponent } from './pages/home/homeComponents/upload-file/upload-file.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import { SigninComponent } from './pages/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +39,12 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     NavBarComponent,
     LoadingComponent,
     ErrorComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    LevelFileComponent,
+    UploadFileComponent,
+    UploadDialogComponent,
+    SigninComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -54,8 +66,12 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MatSlideToggleModule,
     MatMenuModule,
     MatButtonModule,
+    MatCardModule,
+    MatListModule
+    
   ],
   providers: [
+    AngularFireDatabase,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,

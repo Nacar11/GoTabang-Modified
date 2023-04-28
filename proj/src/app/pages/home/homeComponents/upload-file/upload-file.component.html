@@ -1,0 +1,29 @@
+<div class="text-center">
+  <div class="upload-header">
+    <h1 class="upload-title">Retrieve Drone Image</h1>
+    <a class="upload-sub">This Section Ensures Images For Scanning (Availability of PNG/JPG/JPEG)</a>
+  </div>
+
+  <div class="upload-section">
+    <div class="upload-firebase">
+      <h4 class="upload-firebase-title">For Disaster Classification</h4>
+      <img src="https://cdn3d.iconscout.com/3d/premium/thumb/water-level-7460756-6044083.png?f=webp">
+      <div class="upload-file">
+       <!-- <input class="form-control" type="file" (change)="retrieveImage()" accept="*.png*.jpg" multiple="multiple"> -->
+       <button mat-flat-button (click)="retrieveImageClassification()" class="btn btn-success" color="primary">Retrieve</button>
+       <button mat-flat-button (click)="uploadImage()" [disabled]="lockUploadClassification==true" class="btn btn-success" color="primary">Upload</button>
+    </div>
+  </div>
+
+  <div class="upload-firebase">
+    <h4 class="upload-firebase-title">For Post Disaster Assessment</h4>
+    <img class="post-disaster" src="https://www.pngmart.com/files/5/Ruin-PNG-File.png">
+    <div class="upload-file">
+     <!-- <input class="form-control" type="file" (change)="retrieveImage()" accept="*.png*.jpg" multiple="multiple"> -->
+     <button mat-flat-button (click)="retrieveImageAssessment()" class="btn btn-success" color="primary">Retrieve</button>
+     <button mat-flat-button (click)="uploadImage()" [disabled]="lockUploadAssessment==true" class="btn btn-success" color="primary">Upload</button>
+  </div>
+</div>
+</div>
+</div>
+

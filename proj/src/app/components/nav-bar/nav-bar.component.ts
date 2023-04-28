@@ -28,6 +28,6 @@ export class NavBarComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout({ logoutParams: { returnTo: this.doc.location.origin } });
+    this.auth.logout({ logoutParams: { returnTo: "http://localhost:4200" } });
   }
 }
