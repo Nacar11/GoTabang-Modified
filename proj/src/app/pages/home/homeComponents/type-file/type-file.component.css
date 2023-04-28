@@ -1,0 +1,40 @@
+mat-list{
+  position: absolute;
+  right: 15%;
+  margin: 20px 0px 20px 20px;
+}
+
+mat-card-content{
+  max-height: 300px;
+  width: 380px;
+  height: 255px;
+  margin: 10px 10px;
+}
+
+
+.example-card {
+  margin: 30px 0px 40px 40px;
+  width: 400px;
+  height: 290px;
+}
+
+.example-header-image {
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/gotabang.appspot.com/o/icon%2Fgotabang.png?alt=media&token=e7a2335c-eaf6-4f5c-b0f9-9e2bce42be0a');
+  background-size: cover;
+}
+
+img{
+  height: 90%;
+}
+
+.scan-file{
+  display: flex;
+  align-content: center;
+  margin: 0% 5% 10% 17%;
+  overflow: hidden;
+}
+
+:host ::ng-deep #mat-tab-content-0-1{
+  overflow-x: hidden;
+  overflow-y: hidden;
+}

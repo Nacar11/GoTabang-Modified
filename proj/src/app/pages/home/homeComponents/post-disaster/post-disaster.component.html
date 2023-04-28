@@ -1,0 +1,25 @@
+<!-- POST DISASTER FILE -->
+<h2 class="scan-header disaster-classification">Post Disaster Assessment and Information</h2>
+<div class="scan-file classification">
+  <div class="card-holder">
+  <p class="card-description">This section handles the post disaster assessment and general data. Powered by [Input algorithm name].</p>
+  <mat-card class="scan-card">
+    <mat-card-header>
+      <mat-card-title>Image Data</mat-card-title>
+      <mat-card-subtitle>
+        Verified</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content-scan">
+    <img mat-card-image class="card-image classification" style="background-image:url('{{displayImage}}'); background-size: contain;">
+  </mat-card-content>
+  </mat-card>
+  </div>
+
+  <mat-list class="mat-list-scan">
+    <mat-list-item *ngFor="let folder of folders">
+      <mat-icon mat-list-icon>{{folder.icon}}</mat-icon>
+      <div mat-line>{{folder.name}}</div>
+      <div mat-line>{{folder.info}}</div>
+    </mat-list-item>
+  </mat-list>
+  </div>

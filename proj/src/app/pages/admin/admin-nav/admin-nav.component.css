@@ -1,0 +1,97 @@
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+.toolbar-spacer {
+    flex: 1 1 auto;
+  }
+
+mat-toolbar{
+    
+    background: linear-gradient(90deg,rgba(26,38,64,1), rgba(32,45,69,1), rgba(97,152,163,1));
+
+  /* background: linear-gradient(651deg, rgba(26,38,64,1) 0%, rgba(97,152,163,1) 100%); */
+  background-size: 400% 400%;
+  height: 80px;
+ 
+}
+
+button{
+    margin: 10px;
+}
+
+mat-drawer-container{
+    z-index: 1000;
+}
+
+mat-drawer-content,.side-nav{
+  background: linear-gradient(90deg,rgba(26,38,64,1), rgba(32,45,69,1), rgba(97,152,163,1));
+	background-size: 400% 400%;
+}
+
+mat-icon{
+  margin-right: 10px;
+}
+
+
+
+.nav-buttons{
+  margin: 0% 5% 5% 0%;
+  padding: 20px;
+  color: white;
+}
+
+.nav-user{
+  margin: 0% 0% 0% 11%;
+  color: white;
+  display: block;
+  font-size: larger;
+}
+
+
+.navButton{
+    margin: 15% 5% 5% 0%;
+    color: white;
+    display: block;
+    margin-left: 10px;
+}
+
+.sidePic{
+  width: 135px;
+  margin-left: 50px;
+}
+
+
+.user-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.user-profile-picture {
+  padding-top: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 40px;
+}
+
+.side-nav{
+  width:250px;
+}
+
+

@@ -1,0 +1,33 @@
+/* Structure */
+
+.alert-table{
+  margin: 30px;
+}
+table {
+  width: 100%;
+}
+
+mat-form-field {
+  font-size: 14px;
+  width: 90%;
+  padding: 0px 10px;
+  color: white;
+}
+
+mat-label{
+  color: white;
+}
+
+button{
+padding: 0px 10px;}
+
+::ng-deep div.mat-tab-body-wrapper{
+width: 90%;
+}
+
+.table-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

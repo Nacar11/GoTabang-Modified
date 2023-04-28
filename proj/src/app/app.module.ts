@@ -9,11 +9,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
@@ -25,12 +29,17 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
+import { AlertDialogComponent } from './pages/home/homeComponents/alert-dialog/alert-dialog.component';
+import { AlertFileComponent } from './pages/home/homeComponents/alert-file/alert-file.component';
 import { LevelFileComponent } from './pages/home/homeComponents/level-file/level-file.component';
+import { PostDisasterComponent } from './pages/home/homeComponents/post-disaster/post-disaster.component';
+import { TypeFileComponent } from './pages/home/homeComponents/type-file/type-file.component';
 import { UploadDialogComponent } from './pages/home/homeComponents/upload-dialog/upload-dialog.component';
 import { UploadFileComponent } from './pages/home/homeComponents/upload-file/upload-file.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SigninComponent } from './pages/signin/signin.component';
-
+import { AdminNavComponent } from './pages/admin/admin-nav/admin-nav.component';
+import { AdminViewComponent } from './pages/admin/admin-view/admin-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +53,12 @@ import { SigninComponent } from './pages/signin/signin.component';
     UploadFileComponent,
     UploadDialogComponent,
     SigninComponent,
+    AlertDialogComponent,
+    AlertFileComponent,
+    TypeFileComponent,
+    PostDisasterComponent,
+    AdminNavComponent,
+    AdminViewComponent
 
   ],
   imports: [
@@ -67,7 +82,12 @@ import { SigninComponent } from './pages/signin/signin.component';
     MatMenuModule,
     MatButtonModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatTableModule
+    
     
   ],
   providers: [

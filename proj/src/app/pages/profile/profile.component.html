@@ -1,4 +1,4 @@
-<div class="container mt-5" *ngIf="auth.user$ | async as user">
+<!-- <div class="container mt-5" *ngIf="auth.user$ | async as user">
   <div
     class="row align-items-center profile-header mb-5 text-center text-md-left"
   >
@@ -19,4 +19,39 @@
       class="rounded"
     ><code class="json" [highlight]="profileJson"></code></pre>
   </div>
-</div>
+</div> -->
+
+<mat-card class="profile-card">
+  <mat-card-header>
+    <div mat-card-avatar class="profile-picture">
+      <img [src]="(auth.user$ | async)?.picture">
+    </div>
+    <mat-card-title>{{ (auth.user$ | async)?.name }}</mat-card-title>
+    <mat-card-subtitle>{{ (auth.user$ | async)?.email }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-grid-list cols="2" rowHeight="250px">
+      <mat-grid-tile>
+        <h3>About</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec augue quis enim faucibus commodo. Vestibulum at tellus tincidunt, commodo nisi eu, tristique felis. Donec tincidunt augue risus, eu iaculis ex viverra nec. Ut eget ex in risus tincidunt egestas sed vel enim. In non semper odio.</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <h3>Work and Education</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec augue quis enim faucibus commodo. Vestibulum at tellus tincidunt, commodo nisi eu, tristique felis. Donec tincidunt augue risus, eu iaculis ex viverra nec. Ut eget ex in risus tincidunt egestas sed vel enim. In non semper odio.</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <h3>Contact Info</h3>
+        <p>Email: {{ (auth.user$ | async)?.email }}</p>
+        <p>Phone: 555-555-5555</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <h3>Location</h3>
+        <p>123 Main St, Anytown USA 12345</p>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+  <button mat-icon-button color="primary" (click)="redirectToHomePage()">
+    <mat-icon>undo</mat-icon>
+  </button>
+</mat-card>

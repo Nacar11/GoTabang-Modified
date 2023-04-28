@@ -1,0 +1,16 @@
+<div class="alert-dialog">
+<img src="assets/icons/alert-icon.png">
+<div mat-dialog-content *ngIf="!confirmAlert">
+   <p class="alert-text">Alert Selected Nearby Respondents?</p>
+
+  <div class="button-response">
+    <button mat-flat-button color="sucess" (click)="onConfirm()">Confirm</button>
+    <button mat-flat-button mat-dialog-close color="warn">Cancel</button>
+
+  </div>
+</div>
+</div>
+
+<div mat-dialog-content *ngIf="confirmAlert">
+  Alert Nearest Respondents.<br>Waiting For Response, Stay Safe!
+</div>

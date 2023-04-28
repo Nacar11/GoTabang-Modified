@@ -1,0 +1,69 @@
+<mat-toolbar> 
+    <span class="toolbar-spacer"></span>
+    
+    <span *ngIf="(auth.isAuthenticated$ | async) === false">
+      <button  mat-flat-button color="accent" (click)="loginWithRedirect()">Log in</button>
+    </span>
+  
+    <span class="flex" *ngIf="(auth.isAuthenticated$ | async)">
+      
+        
+          <!-- <a *ngIf="auth.user$ | async as user" class="nav-item dropdown" class="nav-link dropdown-toggle" href="#" id="profileDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img [src]="user.picture" alt="Profile picture" class="nav-user-profile rounded-circle" style="width: 75px;">
+            <span>{{ user.name }}</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-left" aria-labelledby="profileDropDown">
+            <a routerLink="/profile" class="dropdown-item">Profile</a>
+            <a (click)="logout()" class="dropdown-item">Log out</a>
+          </div> -->
+          <ul class="user-nav" *ngIf="auth.user$ | async as user">
+            <li class="user-profile" [matMenuTriggerFor]="menu">
+              <img [src]="user.picture" alt="Profile picture" class="user-profile-picture">
+              
+            </li>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item routerLink="/profile">
+                <mat-icon>person</mat-icon>
+                Profile
+              </button>
+              <button mat-menu-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                Log out
+              </button>
+            </mat-menu>
+            
+          </ul>
+        
+          
+  
+    </span>
+  
+  </mat-toolbar>
+  
+  
+  
+  
+  <mat-drawer-container class="side-container">
+    <mat-drawer class="side-nav" mode="side" opened>
+      <img class="sidePic" src="https://firebasestorage.googleapis.com/v0/b/gotabang.appspot.com/o/icon%2Fgotabang-newlogo.png?alt=media&token=48213924-5533-4363-adfa-62fccebbac5d">
+      <div class="nav-buttons">
+        <a class="navButton" routerLinkActive="active" routerLink="dashboard"><mat-icon>home</mat-icon>Dashboard</a>
+        <a class="navButton" routerLinkActive="active" routerLink="upload2"><mat-icon>cloud_download</mat-icon> List of Images</a>
+        <a class="navButton" routerLinkActive="active" routerLink="level"><mat-icon> insert_chart_outlined</mat-icon>Statistics</a>
+        <a class="navButton" routerLinkActive="active" routerLink="post-disaster"><mat-icon>layers</mat-icon>Retrain</a>
+        <a class="navButton" routerLinkActive="active" routerLink="alert"><mat-icon>error_outline</mat-icon> Alert</a>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        
+      
+  <router-outlet></router-outlet>
+  </mat-drawer-content>
+  </mat-drawer-container>
+  <app-toolbar></app-toolbar>
+  
+  
+  
+  
+  
+  

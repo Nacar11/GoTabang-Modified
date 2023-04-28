@@ -1,0 +1,23 @@
+<div class="scan-file">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Image Data</mat-card-title>
+      <mat-card-subtitle>
+        Verified</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+    <img mat-card-image id="card-image" style="background-image:url('{{displayImage}}'); background-size: cover;">
+  </mat-card-content>
+  </mat-card>
+
+  <mat-list>
+    <div mat-subheader>Data Analysis</div>
+    <mat-list-item *ngFor="let folder of folders">
+      <mat-icon mat-list-icon>{{folder.icon}}</mat-icon>
+      <div mat-line> {{folder.info}} </div>
+      <div mat-line>{{folder.name}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+  </div>

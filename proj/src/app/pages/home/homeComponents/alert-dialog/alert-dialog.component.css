@@ -1,0 +1,25 @@
+mat-dialog-content{
+  justify-content: left;
+}
+img{
+  padding: 5px;
+  width: 60px;
+}
+
+.alert-dialog{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.alert-text{
+  margin: 5px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: left;
+}
+
+button{
+  margin: 5px 5px;
+}
+
