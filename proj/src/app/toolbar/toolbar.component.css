@@ -1,0 +1,19 @@
+mat-toolbar{
+  background: linear-gradient(651deg, rgba(26,38,64,1) 0%, rgba(97,152,163,1) 100%);
+  background-size: cover;
+  color: white;
+  display: inline-flex;
+}
+
+::ng-deep.mat-toolbar.mat-toolbar-multiple-rows{
+display: contents;
+}
+img{
+  width: 100px;
+}
+
+.menu-spacer{
+  position: absolute;
+  right: 20px;
+}
+

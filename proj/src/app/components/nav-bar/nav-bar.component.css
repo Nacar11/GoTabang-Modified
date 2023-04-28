@@ -1,0 +1,79 @@
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+.toolbar-spacer {
+    flex: 1 1 auto;
+  }
+
+mat-toolbar{
+    z-index: 900;
+    background: linear-gradient(90deg,rgba(26,38,64,1), rgba(32,45,69,1), rgba(97,152,163,1));
+
+  /* background: linear-gradient(651deg, rgba(26,38,64,1) 0%, rgba(97,152,163,1) 100%); */
+  background-size: 400% 400%;
+  height: 50px;
+ 
+}
+
+button{
+    margin: 10px;
+}
+
+mat-drawer-container{
+    z-index: 1000;
+}
+
+mat-drawer-content,.side-nav{
+  background: linear-gradient(90deg,rgba(26,38,64,1), rgba(32,45,69,1), rgba(97,152,163,1));
+	background-size: 400% 400%;
+    text-align: center;
+}
+
+mat-icon{
+  margin-right: 10px;
+}
+
+
+
+img{
+  width: 135px;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+
+.nav-buttons{
+  margin: 0% 5% 5% 0%;
+  padding: 20px;
+  color: white;
+}
+
+.nav-user{
+  margin: 0% 0% 0% 11%;
+  color: white;
+  display: block;
+  font-size: larger;
+}
+
+
+.side-nav{
+  width: 16%;
+}
+
+
+
+a{
+    margin: 15% 5% 5% 0%;
+    color: white;
+    align-items: center;
+    text-align: center;
+    display: block;
+}
