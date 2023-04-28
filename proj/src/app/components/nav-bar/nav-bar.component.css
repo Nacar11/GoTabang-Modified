@@ -14,12 +14,12 @@
   }
 
 mat-toolbar{
-    z-index: 900;
+    
     background: linear-gradient(90deg,rgba(26,38,64,1), rgba(32,45,69,1), rgba(97,152,163,1));
 
   /* background: linear-gradient(651deg, rgba(26,38,64,1) 0%, rgba(97,152,163,1) 100%); */
   background-size: 400% 400%;
-  height: 50px;
+  height: 80px;
  
 }
 
@@ -34,20 +34,12 @@ mat-drawer-container{
 mat-drawer-content,.side-nav{
   background: linear-gradient(90deg,rgba(26,38,64,1), rgba(32,45,69,1), rgba(97,152,163,1));
 	background-size: 400% 400%;
-    text-align: center;
 }
 
 mat-icon{
   margin-right: 10px;
 }
 
-
-
-img{
-  width: 135px;
-  margin-top: 10px;
-  margin-left: 30px;
-}
 
 
 .nav-buttons{
@@ -64,16 +56,42 @@ img{
 }
 
 
-.side-nav{
-  width: 16%;
-}
-
-
-
-a{
+.navButton{
     margin: 15% 5% 5% 0%;
     color: white;
-    align-items: center;
-    text-align: center;
     display: block;
+    margin-left: 10px;
 }
+
+.sidePic{
+  width: 135px;
+  margin-left: 50px;
+}
+
+
+.user-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.user-profile-picture {
+  padding-top: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 40px;
+}
+
+.side-nav{
+  width:250px;
+}
+
+
