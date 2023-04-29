@@ -1,0 +1,18 @@
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding:100px;
+    
+  }
+  
+  .example-card {
+    padding:10px;
+    height: 200px;
+    flex: 0 1 40%;
+  }
+
+  mat-card-title{
+    margin-left: -20px;
+  }

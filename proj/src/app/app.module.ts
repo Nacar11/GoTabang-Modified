@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,12 +22,18 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { NgChartsModule } from 'ng2-charts';
 import { environment as env } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { AdminImagesComponent } from './pages/admin/admin-images/admin-images.component';
+import { AdminNavComponent } from './pages/admin/admin-nav/admin-nav.component';
+import { AdminRetrainComponent } from './pages/admin/admin-retrain/admin-retrain.component';
+import { AdminStatsComponent } from './pages/admin/admin-stats/admin-stats.component';
+import { AdminViewComponent } from './pages/admin/admin-view/admin-view.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AlertDialogComponent } from './pages/home/homeComponents/alert-dialog/alert-dialog.component';
@@ -37,9 +44,7 @@ import { TypeFileComponent } from './pages/home/homeComponents/type-file/type-fi
 import { UploadDialogComponent } from './pages/home/homeComponents/upload-dialog/upload-dialog.component';
 import { UploadFileComponent } from './pages/home/homeComponents/upload-file/upload-file.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { SigninComponent } from './pages/signin/signin.component';
-import { AdminNavComponent } from './pages/admin/admin-nav/admin-nav.component';
-import { AdminViewComponent } from './pages/admin/admin-view/admin-view.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,13 +57,15 @@ import { AdminViewComponent } from './pages/admin/admin-view/admin-view.componen
     LevelFileComponent,
     UploadFileComponent,
     UploadDialogComponent,
-    SigninComponent,
     AlertDialogComponent,
     AlertFileComponent,
     TypeFileComponent,
     PostDisasterComponent,
     AdminNavComponent,
-    AdminViewComponent
+    AdminViewComponent,
+    AdminImagesComponent,
+    AdminStatsComponent,
+    AdminRetrainComponent
 
   ],
   imports: [
@@ -86,7 +93,9 @@ import { AdminViewComponent } from './pages/admin/admin-view/admin-view.componen
     MatTabsModule,
     MatGridListModule,
     MatFormFieldModule,
-    MatTableModule
+    MatTableModule,
+    NgChartsModule,
+    MatChipsModule
     
     
   ],

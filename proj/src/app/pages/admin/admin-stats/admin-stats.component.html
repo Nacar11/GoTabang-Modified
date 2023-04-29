@@ -1,0 +1,78 @@
+<div class="cards">
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar><mat-icon>account_circle</mat-icon></div>
+        <mat-card-title>Users</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-grid-list cols="2" rowHeight="50px">
+          <mat-grid-tile>
+            <mat-chip> Total Users: 4,501 </mat-chip>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-chip> Active Users: 2,103</mat-chip>
+          </mat-grid-tile>
+          
+        </mat-grid-list>
+      </mat-card-content>
+  </mat-card>
+  <mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar><mat-icon>trending_up</mat-icon></div>
+        <mat-card-title>Model Accuracy</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-grid-list cols="2" rowHeight="50px">
+          <mat-grid-tile>
+            <mat-chip> Fire Classifier: 83% </mat-chip>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-chip> Flood Classifier: 81%</mat-chip>
+          </mat-grid-tile>
+          
+        </mat-grid-list>
+      </mat-card-content>
+  </mat-card>
+</div>
+
+
+
+<div style="margin: 180px;">
+    <div style="display: block; margin-top: 100px;">
+      <canvas baseChart
+            [datasets]="classifiedImages"
+            [labels]="monthsLabel"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+        ></canvas>
+    </div>
+    <div style="display: block; margin-top: 100px;">
+        <canvas baseChart 
+            [type]="'line'"
+              [datasets]="fireSeverity"
+              [labels]="monthsLabel"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+          ></canvas>
+      </div>
+
+      <div style="display: block; margin-top: 100px;">
+        <canvas baseChart 
+            [type]="'line'"
+              [datasets]="floodSeverity"
+              [labels]="monthsLabel"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+          ></canvas>
+      </div>
+      <!-- <div style="display: block; margin-top: 100px;">
+        <canvas baseChart 
+          [type]="'line'"
+          [data]="monthsLabel"
+          [options]="lineChartOptions"
+          [legend]="lineChartLegend">
+        </canvas>
+      </div> -->
+  </div>
+
+
