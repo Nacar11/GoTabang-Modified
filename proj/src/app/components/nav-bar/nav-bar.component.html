@@ -16,7 +16,8 @@
           <a routerLink="/profile" class="dropdown-item">Profile</a>
           <a (click)="logout()" class="dropdown-item">Log out</a>
         </div> -->
-        <ul class="user-nav" *ngIf="auth.user$ | async as user">
+        <div class="user-nav" *ngIf="auth.user$ | async as user">
+          <li><p>Welcome, {{user.name}}</p></li>
           <li class="user-profile" [matMenuTriggerFor]="menu">
             <img [src]="user.picture" alt="Profile picture" class="user-profile-picture">
             
@@ -32,7 +33,7 @@
             </button>
           </mat-menu>
           
-        </ul>
+        </div>
       
         
 

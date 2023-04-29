@@ -3,6 +3,14 @@
 .alert-table{
   margin: 30px;
 }
+
+:host {
+  display: block;
+  width: 100%; 
+  height: 600px;
+  overflow: hidden;
+}
+
 table {
   width: 100%;
 }
@@ -10,12 +18,12 @@ table {
 mat-form-field {
   font-size: 14px;
   width: 90%;
-  padding: 0px 10px;
-  color: white;
+  padding: 0px 35px 0px 0px;
+  color: rgb(35, 31, 31);
 }
 
 mat-label{
-  color: white;
+  color: rgb(35, 31, 31);
 }
 
 button{
@@ -23,6 +31,17 @@ padding: 0px 10px;}
 
 ::ng-deep div.mat-tab-body-wrapper{
 width: 90%;
+}
+
+.scan-header{
+  margin: 0% 0% 0% 3.5%;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.scan-header-title, .scan-header-description{
+  font-weight: normal;
+  margin: 0%;
 }
 
 .table-header{

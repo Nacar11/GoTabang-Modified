@@ -1,16 +1,34 @@
+// General Imports
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import json from 'highlight.js/lib/languages/json';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
-
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { NgChartsModule } from 'ng2-charts';
+import { environment as env } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// Firebase Imports
+import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+
+// Angular-Material Imports
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -20,11 +38,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
-import { NgChartsModule } from 'ng2-charts';
-import { environment as env } from '../environments/environment';
-import { AppRoutingModule } from './app-routing.module';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+
+// App Component Imports
 import { AppComponent } from './app.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -44,6 +60,7 @@ import { TypeFileComponent } from './pages/home/homeComponents/type-file/type-fi
 import { UploadDialogComponent } from './pages/home/homeComponents/upload-dialog/upload-dialog.component';
 import { UploadFileComponent } from './pages/home/homeComponents/upload-file/upload-file.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { SigninComponent } from './pages/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -65,8 +82,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     AdminViewComponent,
     AdminImagesComponent,
     AdminStatsComponent,
-    AdminRetrainComponent
-
+    AdminRetrainComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +92,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
     NgbModule,
     HighlightModule,
     FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFireStorageModule,
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
@@ -94,9 +114,25 @@ import { ProfileComponent } from './pages/profile/profile.component';
     MatGridListModule,
     MatFormFieldModule,
     MatTableModule,
+    MatIconModule,
     NgChartsModule,
-    MatChipsModule
-    
+    MatChipsModule,
+    MatDialogModule,
+    MatInputModule,
+    AngularFireModule.initializeApp(
+      {
+        apiKey: "AIzaSyBM-LFSIhLFRpKM63cWpJeWWJwdNQKcgqo",
+        authDomain: "gotabang.firebaseapp.com",
+        projectId: "gotabang",
+        storageBucket: "gotabang.appspot.com",
+        messagingSenderId: "160977774494",
+        appId: "1:160977774494:web:2449ac00278a754122d88f"
+      }
+    ),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
     
   ],
   providers: [
