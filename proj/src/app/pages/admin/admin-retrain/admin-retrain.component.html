@@ -1,1 +1,15 @@
-<p>admin-retrain works!</p>
+<div class="container">
+  <div class="buttons">
+    <button (click)="retrainFire()">Fire Threat</button>
+    <button (click)="retrainFlood()">Flood Severity</button>
+    <button (click)="retrainDamage()">Damage Assessment</button>
+  </div>
+  <div class="textarea-container">
+    <textarea *ngIf="result"[value]="result" readonly></textarea>
+    <div class="loading-spinner" *ngIf="loading">
+        <div class="spinner-grow" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+      </div>
+  </div>
+</div>

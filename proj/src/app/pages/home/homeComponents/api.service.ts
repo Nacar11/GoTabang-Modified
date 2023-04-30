@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { imageType } from './imageType';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,21 @@ export class ApiService {
 
   classifyFlood(imgUrl:any){
     return this.http.get<imageType[]>(this.url+`flood?image=${imgUrl}`)
+  }
+
+  retrainFlood(): Observable<any> {
+    const url = `${this.url}/floodRetrain`;
+    return this.http.get<any>(url);
+  }
+
+  retrainFire(): Observable<any> {
+    const url = `${this.url}/fireRetrain`;
+    return this.http.get<any>(url);
+  }
+
+  retrainDamage(): Observable<any> {
+    const url = `${this.url}/damageRetrain`;
+    return this.http.get<any>(url);
   }
 
   
