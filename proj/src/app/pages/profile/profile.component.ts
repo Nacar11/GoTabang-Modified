@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
       (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
     );
 
-    
+    console.log(this.auth.user$)
   }
   redirectToHomePage() {
     this.router.navigate(['/']);
