@@ -6,6 +6,9 @@ from djitellopy import Tello
 import cv2
 import time
 
+timestamp = time.strftime("%Y%m%d-%H%M%S")
+filename = "tello_" + timestamp + ".jpg"
+
 tello = Tello()
 tello_connected = False
 tello.connect()
@@ -33,7 +36,7 @@ def land():
 @app.route('/photo', methods=['GET'])
 def photo():
     frame_read = tello.get_frame_read()
-    cv2.imwrite("tello_photo2023.png", frame_read.frame)
+    cv2.imwrite(filename, frame_read.frame)
     return jsonify({'status': 'success'})
 
 @app.route('/rotate', methods=['POST'])
