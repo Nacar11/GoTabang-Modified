@@ -1,1 +1,36 @@
-<p>admin-images works!</p>
+<div class="button-container">
+    <button (click)="showCategory('flood')">Flood</button>
+    <button (click)="showCategory('fire')">Fire</button>
+    <button (click)="showCategory('damage')">Damage</button>
+  </div>
+  
+  <div class="button-container" *ngIf="currentCategory === 'flood'">
+    <button (click)="showSubcategory('severe')">Severe</button>
+    <button (click)="showSubcategory('moderate')">Moderate</button>
+    <button (click)="showSubcategory('significant')">Significant</button>
+  </div>
+  
+  <div class="button-container" *ngIf="currentCategory === 'fire'">
+    <button (click)="showSubcategory('high')">High</button>
+    <button (click)="showSubcategory('medium')">Medium</button>
+    <button (click)="showSubcategory('low')">Low</button>
+  </div>
+  
+  <div class="button-container" *ngIf="currentCategory === 'damage'">
+    <button (click)="showSubcategory('damaged')">Damaged</button>
+    <button (click)="showSubcategory('major')">Major</button>
+    <button (click)="showSubcategory('minor')">Minor</button>
+    <button (click)="showSubcategory('affected')">Affected</button>
+  </div>
+  
+  <div class="image-grid">
+    <div class="image" *ngFor="let image of filteredImages">
+      <img [src]="image.url">
+    </div>
+  </div>
+  
+  <div class="loading-spinner" *ngIf="loading">
+    <div class="spinner-grow" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+  </div>

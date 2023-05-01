@@ -59,6 +59,9 @@ img{
 img.post-disaster{
   width: 17rem;
 }
+img.disaster{
+  width: 12rem;
+}
 
 .text-left{
   margin: 10px;
