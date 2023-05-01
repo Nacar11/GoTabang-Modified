@@ -1,6 +1,45 @@
 scan-file {
   display: none;
 }
+
+form-control{
+  background-color: darkslategray;
+}
+
+.btn{
+  margin: 0px 10px;
+}
+
+.btn-main-takeoff{
+  background-color: #db9c09;
+  color: white;
+}
+
+.btn-main-land{
+  background-color: #881212;
+  color: white;
+}
+
+.btn-main-photo{
+  background-color: #155407;
+  color: rgb(255, 255, 255);
+}
+
+.btn-main-rotate{
+  background-color: #0c0e0f;
+  color: white;
+}
+
+.btn-directions{
+  background-color: #ededee;
+  color: rgb(15, 14, 14);
+  width: 36%;
+}
+
+.btn-submit{
+  margin: 10px;
+}
+
 img{
   width: 40%;
   align-items: center;
@@ -10,50 +49,96 @@ img.post-disaster{
   width: 17rem;
 }
 
-.btn{
-  margin: 0px 10px;
-}
-
-.text-center{
+.text-left{
   margin: 10px;
   padding: 10px;
-  align-items: left;
-  text-align: center;
   height: 500px;
 }
 
-form-control{
-  background-color: darkslategray;
-}
-/* .upload-header{
-  padding: 10px;
-  color: white;
-} */
-
 .upload-header{
-  margin-left: 0px;
-margin-right: 3rem;
+  margin-left: 20px;
+  margin-right: 3rem;
   color: white;
   font-family: 'Poppins', sans-serif;
   font-size:small;
 }
 
-.upload-section{
-  display: flex;
-margin-top: 2rem;
-}
-
 .upload-firebase{
   height: 20rem;
-width: 60%;
-border-style: dashed;
-border-color: wheat;
-margin-left: 20px;
-margin-right: 20px;
-padding: 0px 0px 10px 5px;
+  width: 60%;
+  border-style: dashed;
+  border-color: wheat;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 0px 0px 10px 5px;
 }
 
-.upload-firebase-title{
+.upload-firebase-title, .drone-buttons-header{
   color: white;
   font-family: 'Poppins', sans-serif;
 }
+
+.upload-section{
+  display: flex;
+  margin-top: 2rem;
+  align-items: center;
+  text-align: center;
+}
+
+.upload-sub{
+  color: rgb(182, 180, 180);
+}
+
+.upload-title{
+  margin-bottom: 0%;
+}
+
+/* Tello-Drone Controls */
+
+.drone-btn {
+  margin: 7px;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+.drone-btn:hover {
+  cursor: pointer;
+  background-color: #3e8e41;
+}
+
+.drone-btn:active {
+  background-color: #3e8e41;
+  transform: translateY(2px);
+}
+
+.drone-controls{
+  display: flex;
+}
+
+.drone-buttons{
+  margin-left: 7px;
+  width: 500px;
+}
+.drone-buttons-header{
+  display: ruby;
+  margin-left: 10px;
+}
+
+/* Drone Photo */
+.drone-img {
+  width: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 400px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.drone-img-png{
+  background-size: contain;
+}
+
+

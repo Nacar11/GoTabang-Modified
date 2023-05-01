@@ -9,6 +9,8 @@ import { ThreatDataService } from 'src/app/shared/threat-data/threat-data.servic
 import { ApiService } from '../api.service';
 import { imageType } from '../imageType';
 import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
+import { HttpClient } from '@angular/common/http';
+import { TelloDroneService } from 'src/app/shared/tello-drone/tello-drone.service';
 
 export interface DialogData {
   data: ' ';
@@ -35,6 +37,7 @@ export class UploadFileComponent implements OnInit {
   downloadURL!: string;
   result: any;
   threat: any;
+  currentDate: Date = new Date();
 
 
   imgType:any = [
@@ -47,11 +50,39 @@ export class UploadFileComponent implements OnInit {
   ]
 
 
-  constructor(public dialog: MatDialog, private af: AngularFireStorage,
-    private apiService:ApiService, private threatdata:ThreatDataService,  private db: AngularFireDatabase) {
+  constructor(public dialog: MatDialog, private af: AngularFireStorage, private apiService:ApiService, 
+    private threatdata:ThreatDataService,  private db: AngularFireDatabase, private telloService: TelloDroneService, 
+    private http: HttpClient) {
+  }
+
+  takeoff() {
+    // Take off the drone
+    this.telloService.takeoff().subscribe(res => console.log(res));
+    console.log("takeoff clicked!");
+  }
+
+  photo() {
+    // Take off the drone
+    this.telloService.photo().subscribe(res => console.log(res));
+  }
+
+  land() {
+    // Land the drone
+    this.telloService.land().subscribe(res => console.log(res));
+  }
+
+  move(direction: string, distance: number) {
+    // Move the drone in the specified direction and distance
+    this.telloService.move(direction, distance).subscribe(res => console.log(res));
+  }
+
+  rotate(rotate: number) {
+    // Move the drone in the specified direction and distance
+    this.telloService.rotate(rotate).subscribe(res => console.log(res));
   }
 
   ngOnInit(): void {
+    
   }
 
   openDialog(imgUrl: any, type: string) {
@@ -126,28 +157,44 @@ export class UploadFileComponent implements OnInit {
 // }
 //   }
 
-  uploadImage() {
+  // uploadImage() {
 
-    this.apiService.classifyImage(this.downloadURL).subscribe(async response => {
-      this.type = response
-    if(JSON.stringify(this.type) === JSON.stringify(this.imgType[0])){
-      console.log('Type: ', this.type)
-      console.log('Type2: ', this.imgType[0])
-      this.af.upload("flood/"+Math.random()+this.path, this.path)
-      this.threatdata.setImage(this.downloadURL)
-      this.threatdata.setDisasterClassification(JSON.stringify(this.type))
-      this.openDialog(this.downloadURL, JSON.stringify(this.type));
-    }
-    if(JSON.stringify(this.type) === JSON.stringify(this.imgType[1])){
-      console.log('Type: ', this.type)
-      console.log('Type2: ', this.imgType[1])
-      this.af.upload("fire/data"+Math.random()+this.path, this.path)
-      this.threatdata.setImage(this.downloadURL)
-      this.threatdata.setDisasterClassification(JSON.stringify(this.type))
-      this.openDialog(this.downloadURL, JSON.stringify(this.type));
-    }
-    })
-    }
+  //   this.apiService.classifyImage(this.downloadURL).subscribe(async response => {
+  //     this.type = response
+  //   if(JSON.stringify(this.type) === JSON.stringify(this.imgType[0])){
+  //     console.log('Type: ', this.type)
+  //     console.log('Type2: ', this.imgType[0])
+  //     this.af.upload("flood/"+Math.random()+this.path, this.path)
+  //     this.threatdata.setImage(this.downloadURL)
+  //     this.threatdata.setDisasterClassification(JSON.stringify(this.type))
+  //     this.openDialog(this.downloadURL, JSON.stringify(this.type));
+  //   }
+  //   if(JSON.stringify(this.type) === JSON.stringify(this.imgType[1])){
+  //     console.log('Type: ', this.type)
+  //     console.log('Type2: ', this.imgType[1])
+  //     this.af.upload("fire/data"+Math.random()+this.path, this.path)
+  //     this.threatdata.setImage(this.downloadURL)
+  //     this.threatdata.setDisasterClassification(JSON.stringify(this.type))
+  //     this.openDialog(this.downloadURL, JSON.stringify(this.type));
+  //   }
+  //   })
+  //   }
+
+  async uploadImage() {
+    const filePath = 'images/tello_photo2023.png';
+    const fileRef = this.af.ref(filePath);
+
+    this.http.get('assets/tello_photo2023.png', { responseType: 'blob' })
+      .subscribe((blob: Blob) => {
+        const task = fileRef.put(blob);
+
+        task.then(() => {
+          console.log('File uploaded successfully!');
+        }).catch((error) => {
+          console.error('Error uploading file:', error);
+        });
+      });
+  }
 
     retrieveImageClassification(){
       const storageRef = this.af.refFromURL('gs://gotabang.appspot.com/images');
