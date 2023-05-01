@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { imageType } from './imageType';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 
@@ -35,6 +36,21 @@ export class ApiService {
   setAddress(address: string) {
     this.geoAddress = address;
     console.log(address);
+  }
+
+  retrainFlood(): Observable<any> {
+    const url = `${this.url}/floodRetrain`;
+    return this.http.get<any>(url);
+  }
+
+  retrainFire(): Observable<any> {
+    const url = `${this.url}/fireRetrain`;
+    return this.http.get<any>(url);
+  }
+
+  retrainDamage(): Observable<any> {
+    const url = `${this.url}/damageRetrain`;
+    return this.http.get<any>(url);
   }
 
   getAddress() {
