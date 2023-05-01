@@ -61,6 +61,7 @@ import { UploadDialogComponent } from './pages/home/homeComponents/upload-dialog
 import { UploadFileComponent } from './pages/home/homeComponents/upload-file/upload-file.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SigninComponent } from './pages/signin/signin.component';
+import { UploadVerificationDialogComponent } from './pages/home/homeComponents/upload-verification-dialog/upload-verification-dialog.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { SigninComponent } from './pages/signin/signin.component';
     AdminImagesComponent,
     AdminStatsComponent,
     AdminRetrainComponent,
-    SigninComponent
+    SigninComponent,
+    UploadVerificationDialogComponent
   ],
   imports: [
     BrowserModule,

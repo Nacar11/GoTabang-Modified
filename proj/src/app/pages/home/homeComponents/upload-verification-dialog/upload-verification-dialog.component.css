@@ -1,0 +1,30 @@
+mat-icon{
+    padding: 10px;
+    color: rgb(100, 255, 97);
+  }
+  
+  .mat-dialog-card{
+    text-align: center;
+    align-items: center;
+  }
+
+  .mat-dialog-actions{
+    margin-left: 29%;
+    padding-top: 0px;
+  }
+
+  .mat-dialog-content{
+    width: 400px;
+    padding-bottom: 10px;
+  }
+
+  .drone-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 90%;
+    height: 200px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  
+  
