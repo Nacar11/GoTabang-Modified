@@ -7,9 +7,18 @@ import cv2
 import time
 
 tello = Tello()
+tello_connected = False
 tello.connect()
 tello.streamon()
 
+def connect():
+    global tello_connected
+    try:
+        tello_connected = True
+        return jsonify({'status': 'success'})
+    except:
+        return jsonify({'status': 'error', 'message': 'Failed to connect to Tello drone'})
+    
 @app.route('/takeoff', methods=['GET'])
 def takeoff():
     tello.takeoff()

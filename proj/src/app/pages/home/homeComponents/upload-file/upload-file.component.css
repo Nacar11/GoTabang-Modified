@@ -11,7 +11,7 @@ form-control{
 }
 
 .btn-main-takeoff{
-  background-color: #db9c09;
+  background-color: #0c0e0f;
   color: white;
 }
 
@@ -25,8 +25,8 @@ form-control{
   color: rgb(255, 255, 255);
 }
 
-.btn-main-rotate{
-  background-color: #0c0e0f;
+.btn-main-connect{
+  background-color: #db9c09;
   color: white;
 }
 
@@ -37,7 +37,18 @@ form-control{
 }
 
 .btn-submit{
-  margin: 10px;
+  margin: 10px 0px;
+  width: 76%;
+}
+
+.btn-submit-set{
+  margin: 0px 8px;
+}
+
+.disabled-button {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 
 img{

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { PeriodicElement } from 'src/app/shared/models/hotlines';
 import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'alert-file',
@@ -10,7 +11,7 @@ import { AlertDialogComponent } from '../alert-dialog/alert-dialog.component';
   styleUrls: ['./alert-file.component.css']
 })
 export class AlertFileComponent implements OnInit {
-
+  alertAddress='Uknown City';
 ELEMENT_DATA: PeriodicElement[] = [
     {name: 'Bureau of Fire Protection Region 7', hotline: '032-254-8385', email:'bfppis72018@gmail.com', city: 'Cebu City', province: 'Cebu'},
     {name: 'CCDRRMMO', hotline: '255-0046', email:'cebucitydrrmo@gmail.com', city: 'Cebu City', province: 'Cebu'},
@@ -27,7 +28,7 @@ ELEMENT_DATA: PeriodicElement[] = [
   displayedColumns: string[] = ['name', 'hotline', 'email', 'city', 'province'];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private addressService: ApiService) { }
 
   ngOnInit(): void {
   }

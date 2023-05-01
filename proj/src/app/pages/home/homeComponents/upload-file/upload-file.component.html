@@ -2,6 +2,7 @@
   <div class="upload-header">
     <h1 class="upload-title">Retrieve Drone Image</h1>
     <a class="upload-sub">This Section Ensures Images For Scanning (Availability of PNG/JPG/JPEG)</a>
+    <p id="upload-location"></p>
   </div>
 
   <div class="drone-controls">
@@ -18,59 +19,32 @@
       </div><br>
 
       <div class="btn-main-section">
-        <button mat-flat-button class="drone-btn btn-main-takeoff" (click)="takeoff()">TAKEOFF</button>
-        <button mat-flat-button class="drone-btn btn-main-land" (click)="land()">LAND</button>
-        <button mat-flat-button class="drone-btn btn-main-photo" (click)="photo()">PHOTO</button>
-        <button mat-flat-button class="drone-btn btn-main-rotate" (click)="rotate(90)">ROTATE</button>
+        <button mat-flat-button class="drone-btn btn-main-connect" (click)="connect()">CONNECT</button>
+        <button mat-flat-button class="drone-btn btn-main-takeoff" (click)="takeoff()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">TAKEOFF</button>
+        <button mat-flat-button class="drone-btn btn-main-land" (click)="land()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">LAND</button>
+        <button mat-flat-button class="drone-btn btn-main-photo" (click)="photo()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">PHOTO</button>
+        <button mat-flat-button class="drone-btn btn-main-photo" (click)="video_feed()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">VIDEO</button>
       </div>
     
       <div class="btn-set1">
-        <button mat-flat-button class="drone-btn btn-directions" (click)="move('forward', 30)">FWD</button>
-        <button mat-flat-button class="drone-btn btn-directions" (click)="move('backward', 30)">BCKWD</button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="move('forward', 30)" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">FWD</button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="move('backward', 30)" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">BCKWD</button>
       </div>
     
       <div class="btn-set2">
-        <button mat-flat-button class="drone-btn btn-directions" (click)="move('left', 30)">L</button>
-    <button mat-flat-button class="drone-btn btn-directions" (click)="move('right', 30)">R</button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="move('left', 30)" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">L</button>
+    <button mat-flat-button class="drone-btn btn-directions" (click)="move('right', 30)" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">R</button>
       </div>
     
       <div class="btn-set3">
-        <button mat-flat-button class="drone-btn btn-directions" (click)="move('up', 30)">U</button>
-        <button mat-flat-button class="drone-btn btn-directions" (click)="move('down', 30)">D</button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="move('up', 30)" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">U</button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="move('down', 30)" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">D</button>
       </div>
 
-      <div class="btn-submit">
-        <button mat-flat-button (click)="uploadImage()" class="btn-submit btn-success" color="primary">Upload for Disaster Classification</button>
-        <button mat-flat-button (click)="uploadImage()" class="btn-submit btn-success" color="primary">Upload for Post-Disaster Assessment</button>
+      <div class="btn-submit-set">
+        <button mat-flat-button (click)="uploadImage()" onclick="getLocation()" class="btn-submit btn-success" color="primary">Upload for Disaster Classification</button>
+        <button mat-flat-button (click)="uploadImage()" onclick="getLocation()" class="btn-submit btn-success" color="primary">Upload for Post-Disaster Assessment</button>
       </div>
     </div>
   </div>
-
-  <div class="upload-header">
-    <h1 class="upload-title">Retrieve Drone Image</h1>
-    <a class="upload-sub">This Section Ensures Images For Scanning (Availability of PNG/JPG/JPEG)</a>
-  </div>
-
-  <div class="upload-section">
-    <div class="upload-firebase">
-      <h4 class="upload-firebase-title">For Disaster Classification</h4>
-      <img src="https://cdn3d.iconscout.com/3d/premium/thumb/water-level-7460756-6044083.png?f=webp">
-      <div class="upload-file">
-       <!-- <input class="form-control" type="file" (change)="retrieveImage()" accept="*.png*.jpg" multiple="multiple"> -->
-       <button mat-flat-button (click)="retrieveImageClassification()" class="btn btn-success" color="primary">Retrieve</button>
-       <button mat-flat-button (click)="uploadImage()" [disabled]="lockUploadClassification==true" class="btn btn-success" color="primary">Upload</button>
-    </div>
-  </div>
-
-  <div class="upload-firebase">
-    <h4 class="upload-firebase-title">For Post Disaster Assessment</h4>
-    <img class="post-disaster" src="https://www.pngmart.com/files/5/Ruin-PNG-File.png">
-    <div class="upload-file">
-     <!-- <input class="form-control" type="file" (change)="retrieveImage()" accept="*.png*.jpg" multiple="multiple"> -->
-     <button mat-flat-button (click)="retrieveImageAssessment()" class="btn btn-success" color="primary">Retrieve</button>
-     <button mat-flat-button (click)="uploadImage()" [disabled]="lockUploadAssessment==true" class="btn btn-success" color="primary">Upload</button>
-  </div>
 </div>
-</div>
-</div>
-

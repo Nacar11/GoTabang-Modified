@@ -11,6 +11,7 @@ import { imageType } from '../imageType';
 import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
 import { HttpClient } from '@angular/common/http';
 import { TelloDroneService } from 'src/app/shared/tello-drone/tello-drone.service';
+import { UploadVerificationDialogComponent } from '../upload-verification-dialog/upload-verification-dialog.component';
 
 export interface DialogData {
   data: ' ';
@@ -38,7 +39,7 @@ export class UploadFileComponent implements OnInit {
   result: any;
   threat: any;
   currentDate: Date = new Date();
-
+  telloConnected = false;
 
   imgType:any = [
     {
@@ -53,6 +54,19 @@ export class UploadFileComponent implements OnInit {
   constructor(public dialog: MatDialog, private af: AngularFireStorage, private apiService:ApiService, 
     private threatdata:ThreatDataService,  private db: AngularFireDatabase, private telloService: TelloDroneService, 
     private http: HttpClient) {
+  }
+
+  connect() {
+    // Take off the drone
+    if (this.telloService.connect().subscribe(res => console.log(res))){
+      this.telloConnected = true;
+    }
+  }
+
+  video_feed() {
+    // Take off the drone
+    this.telloService.video_feed().subscribe(res => console.log(res));
+    console.log("stream started!");
   }
 
   takeoff() {
@@ -82,7 +96,6 @@ export class UploadFileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 
   openDialog(imgUrl: any, type: string) {
@@ -181,19 +194,37 @@ export class UploadFileComponent implements OnInit {
   //   }
 
   async uploadImage() {
-    const filePath = 'images/tello_photo2023.png';
-    const fileRef = this.af.ref(filePath);
+    this.dialog.open(UploadVerificationDialogComponent, {
+      data: {
+        panelClass: 'custom-dialog-container'
+      },
+    },
+    );
 
-    this.http.get('assets/tello_photo2023.png', { responseType: 'blob' })
-      .subscribe((blob: Blob) => {
-        const task = fileRef.put(blob);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
 
-        task.then(() => {
-          console.log('File uploaded successfully!');
-        }).catch((error) => {
-          console.error('Error uploading file:', error);
-        });
-      });
+  showPosition(position) {
+    var x = document.getElementById("upload-location");
+    var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const address = data.address;
+      const city = address.city || address.town || address.village;
+      const region = address.region;
+      const country = address.country;
+      const fullAddress = `${city}, ${region}, ${country}`;
+      x.innerHTML = fullAddress;
+      console.log(fullAddress);
+    })
+    .catch(error => console.log(error));
   }
 
     retrieveImageClassification(){
@@ -210,8 +241,6 @@ export class UploadFileComponent implements OnInit {
           console.log(url);
         });
       });
-
-
     }
 
     retrieveImageAssessment(){

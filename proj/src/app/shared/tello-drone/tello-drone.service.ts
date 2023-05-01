@@ -8,6 +8,14 @@ export class TelloDroneService {
 
   constructor(private http: HttpClient) { }
 
+  connect() {
+    return this.http.get('http://localhost:5000/connect');
+  }
+
+  video_feed() {
+    return this.http.get('http://localhost:5000/video_feed');
+  }
+
   takeoff() {
     return this.http.get('http://localhost:5000/takeoff');
   }
