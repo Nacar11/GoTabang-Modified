@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,6 @@ export class TelloDroneService {
     return this.http.get('http://localhost:5000/connect');
   }
 
-  video_feed() {
-    return this.http.get('http://localhost:5000/video_feed');
-  }
-
   takeoff() {
     return this.http.get('http://localhost:5000/takeoff');
   }
@@ -24,8 +21,43 @@ export class TelloDroneService {
     return this.http.get('http://localhost:5000/land');
   }
 
+  left() {
+    return this.http.get('http://localhost:5000/left');
+  }
+
+  right() {
+    return this.http.get('http://localhost:5000/right');
+  }
+
+  forward() {
+    return this.http.get('http://localhost:5000/forward');
+  }
+
+  backward() {
+    return this.http.get('http://localhost:5000/backward');
+  }
+
+  up() {
+    return this.http.get('http://localhost:5000/up');
+  }
+
+  down() {
+    return this.http.get('http://localhost:5000/down');
+  }
+
+  stop() {
+    return this.http.get('http://localhost:5000/stop');
+  }
+
+  clockwise() {
+    return this.http.get('http://localhost:5000/clockwise');
+  }
   photo() {
-      return this.http.get('http://localhost:5000/photo');
+      return this.http.get('http://localhost:5000/photo').pipe(
+        map((response: any) => {
+          return response.filename;
+        })
+      );
     }
 
   move(direction: string, distance: number) {
@@ -33,8 +65,4 @@ export class TelloDroneService {
     return this.http.post('http://localhost:5000/move', body);
   }
 
-  rotate(rotate: number) {
-    const body = { direction: rotate};
-    return this.http.post('http://localhost:5000/rotate', body);
-  }
 }
