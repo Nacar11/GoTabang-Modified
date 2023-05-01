@@ -170,29 +170,6 @@ export class UploadFileComponent implements OnInit {
 // }
 //   }
 
-  // uploadImage() {
-
-  //   this.apiService.classifyImage(this.downloadURL).subscribe(async response => {
-  //     this.type = response
-  //   if(JSON.stringify(this.type) === JSON.stringify(this.imgType[0])){
-  //     console.log('Type: ', this.type)
-  //     console.log('Type2: ', this.imgType[0])
-  //     this.af.upload("flood/"+Math.random()+this.path, this.path)
-  //     this.threatdata.setImage(this.downloadURL)
-  //     this.threatdata.setDisasterClassification(JSON.stringify(this.type))
-  //     this.openDialog(this.downloadURL, JSON.stringify(this.type));
-  //   }
-  //   if(JSON.stringify(this.type) === JSON.stringify(this.imgType[1])){
-  //     console.log('Type: ', this.type)
-  //     console.log('Type2: ', this.imgType[1])
-  //     this.af.upload("fire/data"+Math.random()+this.path, this.path)
-  //     this.threatdata.setImage(this.downloadURL)
-  //     this.threatdata.setDisasterClassification(JSON.stringify(this.type))
-  //     this.openDialog(this.downloadURL, JSON.stringify(this.type));
-  //   }
-  //   })
-  //   }
-
   async uploadImage() {
     this.dialog.open(UploadVerificationDialogComponent, {
       data: {
