@@ -3,8 +3,12 @@ mat-icon{
   color: rgb(100, 255, 97);
 }
 
-.mat-dialog-container{
-  font-weight: bold;
+.mat-dialog-content{
+  margin-top: 0%;
+  padding-top: 0%;
 }
 
+.mat-dialog{
+  text-align: center;
+}
 

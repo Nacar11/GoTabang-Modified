@@ -1,0 +1,15 @@
+<div mat-dialog class="mat-dialog-card">
+<mat-card class="drone-img" style="background-image: url('../../../../../assets/tello_photo2023.png');">
+    <mat-card-header>
+      <mat-card-title></mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+<div mat-dialog-content class="mat-dialog-content">
+  Ready for Verification?
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+    <button mat-flat-button mat-dialog-close>Cancel</button>
+    <button mat-flat-button mat-dialog-close cdkFocusInitial (click)="uploadImage()">Ok</button>
+</div>
+</div>

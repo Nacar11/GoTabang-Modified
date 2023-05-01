@@ -9,6 +9,9 @@ import { ThreatDataService } from 'src/app/shared/threat-data/threat-data.servic
 import { ApiService } from '../api.service';
 import { imageType } from '../imageType';
 import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
+import { HttpClient } from '@angular/common/http';
+import { TelloDroneService } from 'src/app/shared/tello-drone/tello-drone.service';
+import { UploadVerificationDialogComponent } from '../upload-verification-dialog/upload-verification-dialog.component';
 
 export interface DialogData {
   data: ' ';
@@ -35,7 +38,8 @@ export class UploadFileComponent implements OnInit {
   downloadURL!: string;
   result: any;
   threat: any;
-
+  currentDate: Date = new Date();
+  telloConnected = false;
 
   imgType:any = [
     {
@@ -47,8 +51,48 @@ export class UploadFileComponent implements OnInit {
   ]
 
 
-  constructor(public dialog: MatDialog, private af: AngularFireStorage,
-    private apiService:ApiService, private threatdata:ThreatDataService,  private db: AngularFireDatabase) {
+  constructor(public dialog: MatDialog, private af: AngularFireStorage, private apiService:ApiService, 
+    private threatdata:ThreatDataService,  private db: AngularFireDatabase, private telloService: TelloDroneService, 
+    private http: HttpClient) {
+  }
+
+  connect() {
+    // Take off the drone
+    if (this.telloService.connect().subscribe(res => console.log(res))){
+      this.telloConnected = true;
+    }
+  }
+
+  video_feed() {
+    // Take off the drone
+    this.telloService.video_feed().subscribe(res => console.log(res));
+    console.log("stream started!");
+  }
+
+  takeoff() {
+    // Take off the drone
+    this.telloService.takeoff().subscribe(res => console.log(res));
+    console.log("takeoff clicked!");
+  }
+
+  photo() {
+    // Take off the drone
+    this.telloService.photo().subscribe(res => console.log(res));
+  }
+
+  land() {
+    // Land the drone
+    this.telloService.land().subscribe(res => console.log(res));
+  }
+
+  move(direction: string, distance: number) {
+    // Move the drone in the specified direction and distance
+    this.telloService.move(direction, distance).subscribe(res => console.log(res));
+  }
+
+  rotate(rotate: number) {
+    // Move the drone in the specified direction and distance
+    this.telloService.rotate(rotate).subscribe(res => console.log(res));
   }
 
   ngOnInit(): void {
@@ -126,28 +170,62 @@ export class UploadFileComponent implements OnInit {
 // }
 //   }
 
-  uploadImage() {
+  // uploadImage() {
 
-    this.apiService.classifyImage(this.downloadURL).subscribe(async response => {
-      this.type = response
-    if(JSON.stringify(this.type) === JSON.stringify(this.imgType[0])){
-      console.log('Type: ', this.type)
-      console.log('Type2: ', this.imgType[0])
-      this.af.upload("flood/"+Math.random()+this.path, this.path)
-      this.threatdata.setImage(this.downloadURL)
-      this.threatdata.setDisasterClassification(JSON.stringify(this.type))
-      this.openDialog(this.downloadURL, JSON.stringify(this.type));
+  //   this.apiService.classifyImage(this.downloadURL).subscribe(async response => {
+  //     this.type = response
+  //   if(JSON.stringify(this.type) === JSON.stringify(this.imgType[0])){
+  //     console.log('Type: ', this.type)
+  //     console.log('Type2: ', this.imgType[0])
+  //     this.af.upload("flood/"+Math.random()+this.path, this.path)
+  //     this.threatdata.setImage(this.downloadURL)
+  //     this.threatdata.setDisasterClassification(JSON.stringify(this.type))
+  //     this.openDialog(this.downloadURL, JSON.stringify(this.type));
+  //   }
+  //   if(JSON.stringify(this.type) === JSON.stringify(this.imgType[1])){
+  //     console.log('Type: ', this.type)
+  //     console.log('Type2: ', this.imgType[1])
+  //     this.af.upload("fire/data"+Math.random()+this.path, this.path)
+  //     this.threatdata.setImage(this.downloadURL)
+  //     this.threatdata.setDisasterClassification(JSON.stringify(this.type))
+  //     this.openDialog(this.downloadURL, JSON.stringify(this.type));
+  //   }
+  //   })
+  //   }
+
+  async uploadImage() {
+    this.dialog.open(UploadVerificationDialogComponent, {
+      data: {
+        panelClass: 'custom-dialog-container'
+      },
+    },
+    );
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
     }
-    if(JSON.stringify(this.type) === JSON.stringify(this.imgType[1])){
-      console.log('Type: ', this.type)
-      console.log('Type2: ', this.imgType[1])
-      this.af.upload("fire/data"+Math.random()+this.path, this.path)
-      this.threatdata.setImage(this.downloadURL)
-      this.threatdata.setDisasterClassification(JSON.stringify(this.type))
-      this.openDialog(this.downloadURL, JSON.stringify(this.type));
-    }
+  }
+
+  showPosition(position) {
+    var x = document.getElementById("upload-location");
+    var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const address = data.address;
+      const city = address.city || address.town || address.village;
+      const region = address.region;
+      const country = address.country;
+      const fullAddress = `${city}, ${region}, ${country}`;
+      x.innerHTML = fullAddress;
+      console.log(fullAddress);
     })
-    }
+    .catch(error => console.log(error));
+  }
 
     retrieveImageClassification(){
       const storageRef = this.af.refFromURL('gs://gotabang.appspot.com/images');
@@ -163,8 +241,6 @@ export class UploadFileComponent implements OnInit {
           console.log(url);
         });
       });
-
-
     }
 
     retrieveImageAssessment(){
