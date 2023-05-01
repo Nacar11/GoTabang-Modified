@@ -23,7 +23,6 @@
         <button mat-flat-button class="drone-btn btn-main-takeoff" (click)="takeoff()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">TAKEOFF</button>
         <button mat-flat-button class="drone-btn btn-main-land" (click)="land()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">LAND</button>
         <button mat-flat-button class="drone-btn btn-main-photo" (click)="photo()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">PHOTO</button>
-        <button mat-flat-button class="drone-btn btn-main-photo" (click)="video_feed()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">VIDEO</button>
       </div>
     
       <div class="btn-set1">
