@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Section } from 'src/app/shared/models/section';
+import { ThreatDataService } from 'src/app/shared/threat-data/threat-data.service';
 
 @Component({
   selector: 'app-post-disaster',
@@ -7,13 +8,8 @@ import { Section } from 'src/app/shared/models/section';
   styleUrls: ['./post-disaster.component.css']
 })
 export class PostDisasterComponent implements OnInit {
-  @Input() displayImage = 'https://firebasestorage.googleapis.com/v0/b/gotabang.appspot.com/o/images%2FFloodBasicsandSafety-500x333.jpg?alt=media&token=81f94b95-36dc-43a2-8f25-38278155af65';
+  displayImage?: String;
   folders: Section[] = [
-    {
-      icon: 'warning',
-      name: 'Damage Type:',
-      info: 'N/A',
-    },
     {
       icon: 'warning',
       name: 'Damage Assessment:',
@@ -31,9 +27,31 @@ export class PostDisasterComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private threatData:ThreatDataService) { }
 
   ngOnInit(): void {
+    this.threatData.damageClassification.subscribe(damageClassification => {
+
+      const classificationObj = JSON.parse(damageClassification);
+
+      const damageType = classificationObj.Type;
+
+      // Do something with the disaster type
+      console.log('Disaster type:', damageType);
+
+      this.folders[0].info = damageType;
+    });
+
+    this.threatData.dImg.subscribe(dImg => {
+      console.log("image: ", dImg);
+      this.displayImage = dImg;
+      
+    })
+
+    this.threatData.loc.subscribe(loc => {
+      console.log("Address: ", loc);
+      this.folders[3].info = loc;
+    })
   }
 
 }

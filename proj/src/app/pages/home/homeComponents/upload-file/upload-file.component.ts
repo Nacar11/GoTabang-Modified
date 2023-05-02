@@ -12,6 +12,7 @@ import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component'
 import { HttpClient } from '@angular/common/http';
 import { TelloDroneService } from 'src/app/shared/tello-drone/tello-drone.service';
 import { UploadVerificationDialogComponent } from '../upload-verification-dialog/upload-verification-dialog.component';
+import { UploadDamageDialogComponent } from '../upload-damage-dialog/upload-damage-dialog.component';
 
 export interface DialogData {
   data: ' ';
@@ -40,6 +41,7 @@ export class UploadFileComponent implements OnInit {
   threat: any;
   currentDate: Date = new Date();
   telloConnected = false;
+  currentLoc: string = '';
 
   imgType:any = [
     {
@@ -185,23 +187,61 @@ export class UploadFileComponent implements OnInit {
     }
   }
 
+  async uploadDisaster() {
+    this.dialog.open(UploadDamageDialogComponent, {
+      data: {
+        panelClass: 'custom-dialog-container'
+      },
+    },
+    );
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
+
+  // showPosition(position) {
+  //   var x = document.getElementById("upload-location");
+  //   var latitude = position.coords.latitude;
+  // var longitude = position.coords.longitude;
+  // const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
+  // fetch(url)
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     const address = data.address;
+  //     const city = address.city || address.town || address.village;
+  //     const region = address.region;
+  //     const country = address.country;
+  //     const fullAddress = `${city}, ${region}, ${country}`;
+  //     x.innerHTML = fullAddress;
+  //     console.log(fullAddress);
+  //     this.currentLoc = fullAddress;
+  //   })
+  //   .catch(error => console.log(error));
+  //   console.log(this.currentLoc)
+  //   this.threatdata.setLocation(this.currentLoc)
+  // }
+
   showPosition(position) {
     var x = document.getElementById("upload-location");
     var latitude = position.coords.latitude;
-  var longitude = position.coords.longitude;
-  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      const address = data.address;
-      const city = address.city || address.town || address.village;
-      const region = address.region;
-      const country = address.country;
-      const fullAddress = `${city}, ${region}, ${country}`;
-      x.innerHTML = fullAddress;
-      console.log(fullAddress);
-    })
-    .catch(error => console.log(error));
+    var longitude = position.coords.longitude;
+    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const address = data.address;
+        const city = address.city || address.town || address.village;
+        const region = address.region;
+        const country = address.country;
+        const fullAddress = `${city}, ${region}, ${country}`;
+        x.innerHTML = fullAddress;
+        console.log(fullAddress);
+        this.threatdata.setUserLocation(fullAddress)
+      })
+      .catch(error => console.log(error));
   }
 
     retrieveImageClassification(){
