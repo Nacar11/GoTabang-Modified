@@ -16,6 +16,7 @@
             "outputPath": "dist/login-demo",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "verbose": false,
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],

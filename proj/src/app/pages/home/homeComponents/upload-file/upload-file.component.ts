@@ -39,6 +39,7 @@ export class UploadFileComponent implements OnInit {
   result: any;
   threat: any;
   currentDate: Date = new Date();
+  location!: string;
   telloConnected = false;
 
   imgType:any = [
@@ -54,6 +55,7 @@ export class UploadFileComponent implements OnInit {
   constructor(public dialog: MatDialog, private af: AngularFireStorage, private apiService:ApiService, 
     private threatdata:ThreatDataService,  private db: AngularFireDatabase, private telloService: TelloDroneService, 
     private http: HttpClient) {
+      ApiService
   }
 
   connect() {
@@ -188,35 +190,10 @@ export class UploadFileComponent implements OnInit {
   async uploadImage() {
     this.dialog.open(UploadVerificationDialogComponent, {
       data: {
-        panelClass: 'custom-dialog-container'
+        panelClass: 'custom-dialog-container',
       },
     },
     );
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition);
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  }
-
-  showPosition(position) {
-    var x = document.getElementById("upload-location");
-    var latitude = position.coords.latitude;
-  var longitude = position.coords.longitude;
-  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      const address = data.address;
-      const city = address.city || address.town || address.village;
-      const region = address.region;
-      const country = address.country;
-      const fullAddress = `${city}, ${region}, ${country}`;
-      x.innerHTML = fullAddress;
-      console.log(fullAddress);
-    })
-    .catch(error => console.log(error));
   }
 
     retrieveImageClassification(){

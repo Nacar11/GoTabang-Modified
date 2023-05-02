@@ -22,12 +22,12 @@ export class PostDisasterComponent implements OnInit {
     {
       icon: 'calendar_today',
       name: 'Date of Detection:',
-      info: '2022-08-18T04:57:39.056Z',
+      info: 'N/A',
     },
     {
       icon: 'my_location',
       name: 'Affected Area:',
-      info: 'Mandaue City, Cebu City, Philippines',
+      info: 'N/A',
     },
   ];
 
