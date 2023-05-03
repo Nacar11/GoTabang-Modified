@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Section } from 'src/app/shared/models/section';
 import { ThreatDataService } from 'src/app/shared/threat-data/threat-data.service';
+import { ApiService } from '../api.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'level-file',
@@ -8,7 +10,8 @@ import { ThreatDataService } from 'src/app/shared/threat-data/threat-data.servic
   styleUrls: ['./level-file.component.css']
 })
 export class LevelFileComponent implements OnInit {
-  @Input() displayImage = '';
+  displayImage!: String;
+  currentDate: Date;
   folders: Section[] = [
     {
       icon: 'warning',
@@ -23,12 +26,12 @@ export class LevelFileComponent implements OnInit {
     {
       icon: 'calendar_today',
       name: 'Date of Detection:',
-      info: '2022-08-18T04:57:39.056Z',
+      info: '2023-05-18T04:57:39.056Z',
     },
     {
       icon: 'my_location',
       name: 'Affected Area:',
-      info: 'Mandaue City, Cebu City, Philippines',
+      info: 'N/A',
     },
   ];
 
@@ -49,7 +52,9 @@ export class LevelFileComponent implements OnInit {
       info: 'Created: 2022-08-18T04:57:39.056Z',
     },
   ];
-  constructor(private threatData:ThreatDataService) { }
+  constructor(private threatData:ThreatDataService, private as: ApiService, private datePipe: DatePipe) {
+    this.currentDate = new Date();
+   }
 
   ngOnInit(): void {
 
@@ -61,7 +66,7 @@ export class LevelFileComponent implements OnInit {
       const disasterType = classificationObj.Type;
 
       // Do something with the disaster type
-      console.log('Disaster type:', disasterType);
+      // console.log('Disaster type:', disasterType);
 
       this.folders[0].info = disasterType;
     });
@@ -74,19 +79,22 @@ export class LevelFileComponent implements OnInit {
       const threatType = classificationObj.Type;
 
       // Do something with the disaster type
-      console.log('Disaster type:', threatType);
-      this.folders[1].info = threatType.toUpperCase();
+      // console.log('Disaster Level:', threatType);
+      this.folders[1].info = threatType;
+
+      if(threatType != null){
+        this.folders[3].info = "Cebu City, Central Visayas";
+        this.folders[2].info = this.datePipe.transform(this.currentDate, 'MM-dd-yyyy');
+      }
+
     });
 
     this.threatData.image.subscribe(image => {
       console.log("image: ", image);
       this.displayImage = image;
-
-     
     })
     // this.displayImage = this.retrieveImage.downloadURL;
+    
   }
-
-
 
 }

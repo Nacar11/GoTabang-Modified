@@ -26,18 +26,23 @@
       </div>
     
       <div class="btn-set1">
-        <button mat-flat-button class="drone-btn btn-directions" (click)="move('forward', 30)" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">FWD</button>
-        <button mat-flat-button class="drone-btn btn-directions" (click)="move('backward', 30)" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">BCKWD</button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="stop()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">STAY</button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="clockwise()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">ROTATE</button>
       </div>
-    
+
       <div class="btn-set2">
-        <button mat-flat-button class="drone-btn btn-directions" (click)="move('left', 30)" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">L</button>
-    <button mat-flat-button class="drone-btn btn-directions" (click)="move('right', 30)" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">R</button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="forward()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">FWD</button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="backward()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">BCKWD</button>
       </div>
     
       <div class="btn-set3">
-        <button mat-flat-button class="drone-btn btn-directions" (click)="move('up', 30)" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">U</button>
-        <button mat-flat-button class="drone-btn btn-directions" (click)="move('down', 30)" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">D</button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="left()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">LEFT</button>
+    <button mat-flat-button class="drone-btn btn-directions" (click)="right()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">RIGHT</button>
+      </div>
+    
+      <div class="btn-set4">
+        <button mat-flat-button class="drone-btn btn-directions" (click)="up()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">UP</button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="down()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">DOWN</button>
       </div>
 
       <div class="btn-submit-set">

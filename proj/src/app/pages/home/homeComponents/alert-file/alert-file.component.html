@@ -1,15 +1,13 @@
 
 <div class="scan-header">
   <h2 class="scan-header-title">Respondent Alert</h2>
-  <p class="scan-header-description">This section handles alert messages that will be sent to near local respondents and agencies. {{alertAddress}}</p>
+  <p class="scan-header-description">This section handles alert messages that will be sent to near local respondents and agencies</p>
 </div>
 <div class="alert-table">
 <div class="table-header">
-  <p id="upload-location">{{ alertAddress }}</p>
 
 <mat-form-field>
-  <mat-label>{{ alertAddress }}</mat-label>
-  <input matInput [(ngModel)]="alertAddress" (keyup)="applyFilter($event)" #input>
+  <input matInput (keyup)="applyFilter($event)" #input>
 </mat-form-field>
 <button mat-flat-button color="warn" (click)="onAlert()">ALERT</button>
 </div>

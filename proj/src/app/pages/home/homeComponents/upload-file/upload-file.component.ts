@@ -40,6 +40,7 @@ export class UploadFileComponent implements OnInit {
   result: any;
   threat: any;
   currentDate: Date = new Date();
+  location!: string;
   telloConnected = false;
   currentLoc: string = '';
 
@@ -56,48 +57,64 @@ export class UploadFileComponent implements OnInit {
   constructor(public dialog: MatDialog, private af: AngularFireStorage, private apiService:ApiService, 
     private threatdata:ThreatDataService,  private db: AngularFireDatabase, private telloService: TelloDroneService, 
     private http: HttpClient) {
+      ApiService
   }
 
   connect() {
-    // Take off the drone
     if (this.telloService.connect().subscribe(res => console.log(res))){
       this.telloConnected = true;
     }
   }
 
-  video_feed() {
-    // Take off the drone
-    this.telloService.video_feed().subscribe(res => console.log(res));
-    console.log("stream started!");
-  }
-
   takeoff() {
-    // Take off the drone
     this.telloService.takeoff().subscribe(res => console.log(res));
     console.log("takeoff clicked!");
   }
 
   photo() {
-    // Take off the drone
     this.telloService.photo().subscribe(res => console.log(res));
   }
 
   land() {
-    // Land the drone
     this.telloService.land().subscribe(res => console.log(res));
   }
 
-  move(direction: string, distance: number) {
-    // Move the drone in the specified direction and distance
-    this.telloService.move(direction, distance).subscribe(res => console.log(res));
+  right() {
+    this.telloService.right().subscribe(res => console.log(res));
   }
 
-  rotate(rotate: number) {
-    // Move the drone in the specified direction and distance
-    this.telloService.rotate(rotate).subscribe(res => console.log(res));
+   left() {
+    this.telloService.left().subscribe(res => console.log(res));
   }
 
-  ngOnInit(): void {
+  up() {
+    this.telloService.up().subscribe(res => console.log(res));
+  }
+
+   down() {
+    this.telloService.down().subscribe(res => console.log(res));
+  }
+
+  forward() {
+    this.telloService.forward().subscribe(res => console.log(res));
+  }
+
+  backward() {
+    this.telloService.backward().subscribe(res => console.log(res));
+  }
+
+  stop() {
+    this.telloService.stop().subscribe(res => console.log(res));
+  }
+
+  clockwise() {
+    this.telloService.clockwise().subscribe(res => console.log(res));
+  }
+
+  ngOnInit() {
+    this.telloService.photo().subscribe((filename: string) => {
+      this.downloadURL = `../../../../../assets/${filename}`;
+    });
   }
 
   openDialog(imgUrl: any, type: string) {
@@ -175,16 +192,10 @@ export class UploadFileComponent implements OnInit {
   async uploadImage() {
     this.dialog.open(UploadVerificationDialogComponent, {
       data: {
-        panelClass: 'custom-dialog-container'
+        panelClass: 'custom-dialog-container',
       },
     },
     );
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition);
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
   }
 
   async uploadDisaster() {
