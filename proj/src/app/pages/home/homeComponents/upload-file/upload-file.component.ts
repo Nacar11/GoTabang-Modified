@@ -198,6 +198,15 @@ export class UploadFileComponent implements OnInit {
     );
   }
 
+  async uploadImageAssessment() {
+    this.dialog.open(UploadDamageDialogComponent, {
+      data: {
+        panelClass: 'custom-dialog-container',
+      },
+    },
+    );
+  }
+
     retrieveImageClassification(){
       const storageRef = this.af.refFromURL('gs://gotabang.appspot.com/images');
 

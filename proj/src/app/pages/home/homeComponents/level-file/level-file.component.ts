@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Section } from 'src/app/shared/models/section';
 import { ThreatDataService } from 'src/app/shared/threat-data/threat-data.service';
 import { ApiService } from '../api.service';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'level-file',
@@ -11,7 +10,7 @@ import { DatePipe } from '@angular/common';
 })
 export class LevelFileComponent implements OnInit {
   displayImage!: String;
-  currentDate: Date;
+  currentDate: Date = new Date();
   folders: Section[] = [
     {
       icon: 'warning',
@@ -52,11 +51,15 @@ export class LevelFileComponent implements OnInit {
       info: 'Created: 2022-08-18T04:57:39.056Z',
     },
   ];
-  constructor(private threatData:ThreatDataService, private as: ApiService, private datePipe: DatePipe) {
-    this.currentDate = new Date();
+  constructor(private threatData:ThreatDataService, private as: ApiService) {
    }
 
   ngOnInit(): void {
+    const date = this.currentDate.toLocaleDateString('en-US', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
 
     this.threatData.disasterClassification.subscribe(disasterClassification => {
       // Parse the JSON string to an object
@@ -84,7 +87,7 @@ export class LevelFileComponent implements OnInit {
 
       if(threatType != null){
         this.folders[3].info = "Cebu City, Central Visayas";
-        this.folders[2].info = this.datePipe.transform(this.currentDate, 'MM-dd-yyyy');
+        this.folders[2].info = date.toString();
       }
 
     });

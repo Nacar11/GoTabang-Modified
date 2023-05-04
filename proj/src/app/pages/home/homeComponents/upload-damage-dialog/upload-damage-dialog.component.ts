@@ -25,6 +25,11 @@ export class UploadDamageDialogComponent {
   
       task.then(() => {
         console.log('File uploaded successfully!');
+        this.dialog.open(UploadDialogComponent, {
+          data: {
+            panelClass: 'custom-dialog-container'
+          },
+        },)
         fileRef.getDownloadURL().subscribe(downloadURL => {
           console.log('Download URL:', downloadURL);
           this.threatdata.setImageDamage(downloadURL);

@@ -9,6 +9,8 @@ import { ThreatDataService } from 'src/app/shared/threat-data/threat-data.servic
 })
 export class PostDisasterComponent implements OnInit {
   displayImage?: String;
+  currentDate: Date = new Date();
+  
   folders: Section[] = [
     {
       icon: 'warning',
@@ -30,6 +32,12 @@ export class PostDisasterComponent implements OnInit {
   constructor(private threatData:ThreatDataService) { }
 
   ngOnInit(): void {
+    const date = this.currentDate.toLocaleDateString('en-US', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+
     this.threatData.damageClassification.subscribe(damageClassification => {
 
       const classificationObj = JSON.parse(damageClassification);
@@ -40,6 +48,11 @@ export class PostDisasterComponent implements OnInit {
       console.log('Disaster type:', damageType);
 
       this.folders[0].info = damageType;
+      if(damageType != null){
+        this.folders[2].info = "Cebu City, Central Visayas";
+        this.folders[1].info = date.toString();
+      }
+
     });
 
     this.threatData.dImg.subscribe(dImg => {
@@ -50,7 +63,7 @@ export class PostDisasterComponent implements OnInit {
 
     this.threatData.loc.subscribe(loc => {
       console.log("Address: ", loc);
-      this.folders[3].info = loc;
+      this.folders[2].info = loc;
     })
   }
 
