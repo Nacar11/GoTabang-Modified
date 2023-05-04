@@ -12,6 +12,7 @@ import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component'
 import { HttpClient } from '@angular/common/http';
 import { TelloDroneService } from 'src/app/shared/tello-drone/tello-drone.service';
 import { UploadVerificationDialogComponent } from '../upload-verification-dialog/upload-verification-dialog.component';
+import { UploadDamageDialogComponent } from '../upload-damage-dialog/upload-damage-dialog.component';
 
 export interface DialogData {
   data: ' ';
@@ -41,6 +42,7 @@ export class UploadFileComponent implements OnInit {
   currentDate: Date = new Date();
   location!: string;
   telloConnected = false;
+  currentLoc: string = '';
 
   imgType:any = [
     {

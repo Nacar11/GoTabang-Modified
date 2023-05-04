@@ -59,6 +59,7 @@ import { PostDisasterComponent } from './pages/home/homeComponents/post-disaster
 import { TypeFileComponent } from './pages/home/homeComponents/type-file/type-file.component';
 import { UploadDialogComponent } from './pages/home/homeComponents/upload-dialog/upload-dialog.component';
 import { UploadFileComponent } from './pages/home/homeComponents/upload-file/upload-file.component';
+import {UploadDamageDialogComponent} from './pages/home/homeComponents/upload-damage-dialog/upload-damage-dialog.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { UploadVerificationDialogComponent } from './pages/home/homeComponents/upload-verification-dialog/upload-verification-dialog.component';
@@ -77,6 +78,7 @@ import { UploadVerificationDialogComponent } from './pages/home/homeComponents/u
     UploadDialogComponent,
     AlertDialogComponent,
     AlertFileComponent,
+    UploadDamageDialogComponent,
     TypeFileComponent,
     PostDisasterComponent,
     AdminNavComponent,

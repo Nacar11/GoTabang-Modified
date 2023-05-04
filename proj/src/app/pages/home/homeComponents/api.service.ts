@@ -33,6 +33,10 @@ export class ApiService {
     return this.http.get<imageType[]>(this.url+`flood?image=${imgUrl}`)
   }
 
+  classifyDamage(imgUrl:any){
+    return this.http.get<imageType[]>(this.url+`damage?image=${imgUrl}`)
+  }
+
   setAddress(address: string) {
     this.geoAddress = address;
     console.log(address);
