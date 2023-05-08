@@ -6,20 +6,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./admin-train.component.css']
 })
 export class AdminTrainComponent {
-  @Output() pathSelected = new EventEmitter<string>();
-  @Input() folderPath: string;
+    directoryPath: string;
 
-  onSelectFile(event) {
-    const files = event.target.files;
-    if (files.length > 0) {
-      const path = files[0].path;
-      this.pathSelected.emit(path);
-      console.log(`Selected path: ${path}`);
-    }
+  onDirectorySelect() {
+    console.log(this.directoryPath);
   }
-
-  openFolder() {
-    console.log(`Opening folder ${this.folderPath}`);
-  }
-
 }

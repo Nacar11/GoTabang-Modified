@@ -8,25 +8,24 @@
       <mat-card>
         <img class="mat-card-image training" mat-card-image src="https://docs.breezometer.com/api-documentation/assets/img/heatmap_new_old.79038102.gif">
         <mat-card-content>
-            <button (click)="openFolder()">Open Folder</button>
-            <input type="file" id="img" webkitdirectory  style="display:none;">
-            <label for="img">Select Path for Training</label>
+            <input type="text" [(ngModel)]="directoryPath" directory />
+            <button class="input-btn" mat-button (click)="onDirectorySelect()">Select For Training</button>
         </mat-card-content>
       </mat-card> 
       
       <mat-card style="margin-left: 20px;">
         <img class="mat-card-image testing" mat-card-image src="https://www.zirous.com/wp-content/uploads/2020/12/Power-BI-Premium-Gif.gif">
         <mat-card-content>
-            <input type="file" id="img" (change)="onSelectFile($event)" style="display:none;">
-            <label for="img">Select Path for Testing</label>
+            <input type="text" [(ngModel)]="directoryPath" directory />
+            <button class="input-btn" mat-button (click)="onDirectorySelect()">Select For Testing</button>
         </mat-card-content>
       </mat-card>  
     </div>
 
     <div class="button-list">
-        <button mat-flat-button>Disaster Classifier</button>
-        <button mat-flat-button>Fire Threat</button>
-        <button mat-flat-button>Flood Severity</button>
-        <button mat-flat-button>Post Damage Assessment</button>
+        <button class="sub-btn" mat-flat-button>Disaster Classifier</button>
+        <button class="sub-btn" mat-flat-button>Fire Threat</button>
+        <button class="sub-btn" mat-flat-button>Flood Severity</button>
+        <button class="sub-btn" mat-flat-button>Post Damage Assessment</button>
     </div>
-</div>
+    </div>

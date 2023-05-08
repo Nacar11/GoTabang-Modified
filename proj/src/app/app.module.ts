@@ -12,6 +12,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { environment as env } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 // Firebase Imports
 import { AngularFireModule } from '@angular/fire/compat'
@@ -99,6 +100,7 @@ import { AdminTrainComponent } from './pages/admin/admin-train/admin-train.compo
     HighlightModule,
     FontAwesomeModule,
     FormsModule,
+    NgxFileDropModule,
     ReactiveFormsModule,
     AngularFireStorageModule,
     AuthModule.forRoot({

@@ -9,10 +9,15 @@ mat-card-content {
     margin-top: 10%;
 }
 
-button{
+.sub-btn{
     background-color: rgb(16, 16, 16);
     color: white;
     margin: 30px 20px 0px 0px;
+}
+
+.input-btn{
+    color: white;
+    margin-left: 10px;
 }
 
 label{
