@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Section } from 'src/app/shared/models/section';
 import { ThreatDataService } from 'src/app/shared/threat-data/threat-data.service';
-import { ApiService } from '../api.service';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'level-file',
@@ -11,6 +11,7 @@ import { ApiService } from '../api.service';
 export class LevelFileComponent implements OnInit {
   displayImage!: String;
   currentDate: Date = new Date();
+  currentlocation: string;
   folders: Section[] = [
     {
       icon: 'warning',
@@ -25,7 +26,7 @@ export class LevelFileComponent implements OnInit {
     {
       icon: 'calendar_today',
       name: 'Date of Detection:',
-      info: '2023-05-18T04:57:39.056Z',
+      info: 'N/A',
     },
     {
       icon: 'my_location',
@@ -34,32 +35,11 @@ export class LevelFileComponent implements OnInit {
     },
   ];
 
-  damages: Section[] = [
-    {
-      icon: 'insert_photo',
-      name: 'Disaster Level',
-      info: 'Critical',
-    },
-    {
-      icon: 'folder',
-      name: 'Damage Ratio',
-      info: '80%',
-    },
-    {
-      icon: 'calendar_today',
-      name: 'Detected On',
-      info: 'Created: 2022-08-18T04:57:39.056Z',
-    },
-  ];
-  constructor(private threatData:ThreatDataService, private as: ApiService) {
+  constructor(private threatData:ThreatDataService, private storage: AngularFireStorage) {
    }
 
   ngOnInit(): void {
-    const date = this.currentDate.toLocaleDateString('en-US', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
-    });
+    const storageRef = this.storage.ref('images/tello_photo2023.png');
 
     this.threatData.disasterClassification.subscribe(disasterClassification => {
       // Parse the JSON string to an object
@@ -86,10 +66,17 @@ export class LevelFileComponent implements OnInit {
       this.folders[1].info = threatType;
 
       if(threatType != null){
-        this.folders[3].info = "Cebu City, Central Visayas";
-        this.folders[2].info = date.toString();
+        storageRef.getMetadata().subscribe((metadata) => {
+          if (metadata){
+          this.folders[3].info = metadata.customMetadata.fullAddress;
+          this.folders[2].info = metadata.timeCreated;
+          console.log(metadata)
+          } else if (metadata! || metadata == null || metadata == undefined){
+            this.folders[3].info = "Local File";
+            this.folders[2].info = this.currentDate.toString();
+          }
+        });
       }
-
     });
 
     this.threatData.image.subscribe(image => {

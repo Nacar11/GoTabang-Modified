@@ -1,0 +1,32 @@
+<div class="train-section">
+    <div class="train-header">
+        <h2 class="upload-title">Data Training</h2>
+        <p class="upload-sub">Displays The Data Statistics</p>
+      </div>
+
+      <div class="train-input">
+      <mat-card>
+        <img class="mat-card-image training" mat-card-image src="https://docs.breezometer.com/api-documentation/assets/img/heatmap_new_old.79038102.gif">
+        <mat-card-content>
+            <button (click)="openFolder()">Open Folder</button>
+            <input type="file" id="img" webkitdirectory  style="display:none;">
+            <label for="img">Select Path for Training</label>
+        </mat-card-content>
+      </mat-card> 
+      
+      <mat-card style="margin-left: 20px;">
+        <img class="mat-card-image testing" mat-card-image src="https://www.zirous.com/wp-content/uploads/2020/12/Power-BI-Premium-Gif.gif">
+        <mat-card-content>
+            <input type="file" id="img" (change)="onSelectFile($event)" style="display:none;">
+            <label for="img">Select Path for Testing</label>
+        </mat-card-content>
+      </mat-card>  
+    </div>
+
+    <div class="button-list">
+        <button mat-flat-button>Disaster Classifier</button>
+        <button mat-flat-button>Fire Threat</button>
+        <button mat-flat-button>Flood Severity</button>
+        <button mat-flat-button>Post Damage Assessment</button>
+    </div>
+</div>

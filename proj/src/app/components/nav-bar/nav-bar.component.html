@@ -20,7 +20,6 @@
           <li><p>Welcome, {{user.name}}</p></li>
           <li class="user-profile" [matMenuTriggerFor]="menu">
             <img [src]="user.picture" alt="Profile picture" class="user-profile-picture">
-            
           </li>
           <mat-menu #menu="matMenu">
             <button mat-menu-item routerLink="/profile">
@@ -32,7 +31,6 @@
               Log out
             </button>
           </mat-menu>
-          
         </div>
       
         

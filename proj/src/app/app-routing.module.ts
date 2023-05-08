@@ -14,6 +14,7 @@ import { LevelFileComponent } from './pages/home/homeComponents/level-file/level
 import { PostDisasterComponent } from './pages/home/homeComponents/post-disaster/post-disaster.component';
 import { UploadFileComponent } from './pages/home/homeComponents/upload-file/upload-file.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { AdminTrainComponent } from './pages/admin/admin-train/admin-train.component';
 
 
 
@@ -48,6 +49,7 @@ const routes: Routes = [
   component: AdminNavComponent,
   children: [
     {path: 'dashboard', component: AdminViewComponent, },
+    {path: 'train', component: AdminTrainComponent, },
     {path: 'images', component: AdminImagesComponent, },
     {path: 'stats', component: AdminStatsComponent, },
     {path: 'retrain', component: AdminRetrainComponent, },

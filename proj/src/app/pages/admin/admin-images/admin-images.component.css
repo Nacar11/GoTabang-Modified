@@ -1,27 +1,50 @@
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.button-container button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1d2123;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+}
+
+.button-container button.active {
+  background-color: #555;
+  color: #fff;
+}
+
 .image-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-  }
+}
   
-  .image {
+.image {
     position: relative;
     width: calc(33.33% - 10px);
     height: 0;
     padding-bottom: 30%;
     overflow: hidden;
-  }
+}
   
-  .image img {
+.image img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     display: block;
-  }
+}
   
-  .image-overlay {
+.image-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -31,35 +54,26 @@
     color: #fff;
     text-align: center;
     font-size: 14px;
-  }
+}
   
-  .button-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .button-container button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #ddd;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .button-container button.active {
-    background-color: #555;
-    color: #fff;
-  }
-  
-  .loading-spinner {
+.listImages{
+    height: 500px;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.loading-spinner {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 18px;
     margin-top: 20px;
-  }
+}
+
+.upload-header{
+    color: white;
+}
+
+  
   
   

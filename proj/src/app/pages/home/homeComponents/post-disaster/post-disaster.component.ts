@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Section } from 'src/app/shared/models/section';
 import { ThreatDataService } from 'src/app/shared/threat-data/threat-data.service';
 
@@ -29,9 +30,11 @@ export class PostDisasterComponent implements OnInit {
     },
   ];
 
-  constructor(private threatData:ThreatDataService) { }
+  constructor(private threatData:ThreatDataService, private storage: AngularFireStorage) { }
 
   ngOnInit(): void {
+    const storageRef = this.storage.ref('images/tello_photo2023.png');
+
     const date = this.currentDate.toLocaleDateString('en-US', {
       day: 'numeric',
       month: 'short',
@@ -49,22 +52,27 @@ export class PostDisasterComponent implements OnInit {
 
       this.folders[0].info = damageType;
       if(damageType != null){
-        this.folders[2].info = "Cebu City, Central Visayas";
-        this.folders[1].info = date.toString();
+        storageRef.getMetadata().subscribe((metadata) => {
+          if (metadata! || metadata == null || metadata == undefined){
+            this.folders[1].info = this.currentDate.toString();
+          }
+          this.folders[2].info = metadata.customMetadata.fullAddress;
+          this.folders[1].info = metadata.timeCreated;
+          console.log("post disaster folder", metadata)
+        });
       }
 
     });
 
     this.threatData.dImg.subscribe(dImg => {
       console.log("image: ", dImg);
-      this.displayImage = dImg;
-      
+      this.displayImage = dImg;      
     })
 
-    this.threatData.loc.subscribe(loc => {
-      console.log("Address: ", loc);
-      this.folders[2].info = loc;
-    })
+    // this.threatData.loc.subscribe(loc => {
+    //   console.log("Address: ", loc);
+    //   this.folders[2].info = loc;
+    // })
   }
 
 }

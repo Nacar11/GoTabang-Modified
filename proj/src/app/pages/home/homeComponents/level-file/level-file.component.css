@@ -73,7 +73,7 @@ mat-icon{
 
 .mat-card-content-scan{
   width: 500px;
-  height: 200px;
+  height: 300px;
   margin: 10px 10px;
   overflow: hidden;
 }
@@ -98,7 +98,7 @@ mat-icon{
 .scan-card {
   margin: 30px 0px 40px 40px;
   width: 600px;
-  height: 290px;
+  height: 350px;
 }
 
 /* Disaster Classification */
@@ -112,7 +112,8 @@ mat-icon{
 }
 
 .card-image.classification{
-  height: 90%;
+  width: 500px;
+  height: 300px;
 }
 
 /* Damage Assessment */

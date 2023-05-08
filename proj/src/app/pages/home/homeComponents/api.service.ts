@@ -9,7 +9,8 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
 })
 export class ApiService {
   url = 'http://127.0.0.1:7777/';
-  geoAddress: string;
+  imageurl: string;
+  location: string;
 
     constructor(private http: HttpClient) {
      }
@@ -37,11 +38,6 @@ export class ApiService {
     return this.http.get<imageType[]>(this.url+`damage?image=${imgUrl}`)
   }
 
-  setAddress(address: string) {
-    this.geoAddress = address;
-    console.log(address);
-  }
-
   retrainFlood(): Observable<any> {
     const url = `${this.url}/floodRetrain`;
     return this.http.get<any>(url);
@@ -57,7 +53,21 @@ export class ApiService {
     return this.http.get<any>(url);
   }
 
-  getAddress() {
-    return this.geoAddress;
+  setImage(url: string) {
+    this.imageurl = url;
+    console.log("image url in service: ", this.imageurl);
+  }
+
+  getImage() {
+     return this.imageurl;
+  }
+
+  setLocation(loc: string) {
+    this.location = loc;
+    console.log("location in service: ", this.location);
+  }
+
+  getLocation() {
+     return this.location;
   }
 }

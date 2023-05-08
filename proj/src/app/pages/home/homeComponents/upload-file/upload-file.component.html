@@ -1,11 +1,31 @@
 <div class="text-left">
   <div class="upload-header">
-    <h1 class="upload-title">Retrieve Drone Image</h1>
+    <h5 class="upload-title">Retrieve Drone Image</h5>
     <a class="upload-sub">This Section Ensures Images For Scanning (Availability of PNG/JPG/JPEG)</a>
-    <p id="upload-location"></p>
   </div>
 
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="Tello Drone">
+  
   <div class="drone-controls">
+    <div class="drone-buttons left">
+      <div class="drone-buttons-header">
+      </div><br>
+
+      <div class="btn-main-section">
+        <button mat-flat-button class="drone-btn ctrl btn-main-connect" (click)="connect()"><mat-icon class="mat-icon">power_settings_new</mat-icon></button>
+        <button mat-flat-button class="drone-btn text btn-main-takeoff" (click)="takeoff()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">TAKEOFF</button>
+        <button mat-flat-button class="drone-btn text btn-main-land" (click)="land()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">LAND</button>
+        <button mat-flat-button class="drone-btn text btn-main-photo" (click)="photo()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">PHOTO</button>
+      </div>
+
+      <div class="btn-set2 left">
+        <button mat-flat-button class="drone-btn btn-directions" (click)="forward()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}"><mat-icon class="mat-icon">expand_less</mat-icon></button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="clockwise()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}"><mat-icon class="mat-icon">rotate_90_degrees_ccw</mat-icon></button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="backward()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}"><mat-icon class="mat-icon">expand_more</mat-icon></button>
+      </div>
+    </div>
+
     <mat-card class="drone-img" style="background-image: url('../../../../../assets/tello_photo2023.png');">
       <mat-card-header>
         <mat-card-title></mat-card-title>
@@ -13,42 +33,83 @@
       </mat-card-header>
     </mat-card>
     
-    <div class="drone-buttons">
+    <div class="drone-buttons right">
       <div class="drone-buttons-header">
         <p class="dron-image-title"> Tello Image Preview<br> 	• Uploaded on {{ currentDate | date }} </p>
       </div><br>
 
-      <div class="btn-main-section">
-        <button mat-flat-button class="drone-btn btn-main-connect" (click)="connect()">CONNECT</button>
-        <button mat-flat-button class="drone-btn btn-main-takeoff" (click)="takeoff()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">TAKEOFF</button>
-        <button mat-flat-button class="drone-btn btn-main-land" (click)="land()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">LAND</button>
-        <button mat-flat-button class="drone-btn btn-main-photo" (click)="photo()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">PHOTO</button>
-      </div>
     
-      <div class="btn-set1">
-        <button mat-flat-button class="drone-btn btn-directions" (click)="stop()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">STAY</button>
-        <button mat-flat-button class="drone-btn btn-directions" (click)="clockwise()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">ROTATE</button>
+      <div class="btn-set1 right">
+        <button mat-flat-button class="drone-btn btn-directions" (click)="forward()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}"><mat-icon>keyboard_arrow_up</mat-icon></button>
       </div>
 
-      <div class="btn-set2">
-        <button mat-flat-button class="drone-btn btn-directions" (click)="forward()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">FWD</button>
-        <button mat-flat-button class="drone-btn btn-directions" (click)="backward()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">BCKWD</button>
+      <div class="btn-set2 right">
+        <button mat-flat-button class="drone-btn btn-directions" (click)="left()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}"><mat-icon class="mat-icon">keyboard_arrow_left</mat-icon></button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="stop()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}"><mat-icon class="mat-icon">block</mat-icon></button>
+        <button mat-flat-button class="drone-btn btn-directions" (click)="right()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}"><mat-icon class="mat-icon">keyboard_arrow_right</mat-icon></button>
       </div>
     
-      <div class="btn-set3">
-        <button mat-flat-button class="drone-btn btn-directions" (click)="left()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">LEFT</button>
-    <button mat-flat-button class="drone-btn btn-directions" (click)="right()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">RIGHT</button>
+      <div class="btn-set3 right">
+        <button mat-flat-button class="drone-btn btn-directions" (click)="backward()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}"><mat-icon class="mat-icon">keyboard_arrow_down</mat-icon></button>
       </div>
     
-      <div class="btn-set4">
-        <button mat-flat-button class="drone-btn btn-directions" (click)="up()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">UP</button>
-        <button mat-flat-button class="drone-btn btn-directions" (click)="down()" [disabled]="!telloConnected" [ngClass]="{'disabled-button': !telloConnected}">DOWN</button>
-      </div>
-
-      <div class="btn-submit-set">
-        <button mat-flat-button (click)="uploadImage()" class="btn-submit btn-success" color="primary">Upload for Disaster Classification</button>
-        <button mat-flat-button (click)="uploadImageAssessment()" class="btn-submit btn-success" color="primary">Upload for Post-Disaster Assessment</button>
+      <div class="btn-submit-set-drone">
+        <button mat-flat-button (click)="uploadImage()" [disabled]="!telloConnected" class="btn-submit btn-success" color="primary">Upload for Disaster Classification</button>
+        <button mat-flat-button (click)="uploadImageAssessment()" [disabled]="!telloConnected" class="btn-submit btn-success" color="primary">Upload for Post-Disaster Assessment</button>
       </div>
     </div>
   </div>
+</mat-tab>
+
+<mat-tab label="Computer"> 
+<div class="upload-local">
+<mat-card class="upload-local-img-priv">
+  <mat-card-content [ngStyle]="cardStyle">
+  </mat-card-content>
+</mat-card>
+
+<div class="local-controls">
+  <div class="drone-buttons-header">
+    <p class="dron-image-title">Local Image Preview<br> • Uploaded on {{ currentDate | date }} </p>
+  </div><br>
+  <div class="form-group">
+    <input
+      type="file"
+      class="form-control"
+      (change)="onFileSelected($event)"
+    />
+  </div>
+
+  <div class="btn-submit-local">
+        <button mat-flat-button (click)="uploadLocalImage('classfication')" [disabled]="!selectedImage" class="btn-submit btn-success" color="primary">Upload for Disaster Classification</button>
+        <button mat-flat-button (click)="uploadLocalImage('damage')" [disabled]="!selectedImage" class="btn-submit btn-success" color="primary">Upload for Post-Disaster Assessment</button>
+  </div>
+</div>
+</div>
+</mat-tab>
+
+<mat-tab label="Mobile"> 
+  <div class="upload-local">
+    <mat-card class="upload-local-img-priv" [style.background-image]="'url(' + downloadURL + ')'" style="background-size: cover; background-repeat: no-repeat;"> 
+      <mat-card-content>
+        <img mat-card-image class="card-image classification">
+      </mat-card-content>
+    </mat-card>
+    
+    <div class="local-controls">
+      <div class="btn-submit-mobile1">
+        <div class="drone-buttons-header">
+          <p class="dron-image-title"> Mobile Image Preview<br> 	• Uploaded on {{ currentDate | date }} </p>
+        </div><br>
+        <button mat-flat-button (click)="retrieveImage()" class="btn-retrieve btn-success" color="primary">Retrieve</button>
+      </div>
+    
+      <div class="btn-submit-mobile2">
+            <button mat-flat-button (click)="uploadMobileImage('classfication')" [disabled]="!downloadURL" class="btn-submit btn-success" color="primary">Upload for Disaster Classification</button>
+            <button mat-flat-button (click)="uploadMobileImage('damage')" [disabled]="!downloadURL" class="btn-submit btn-success" color="primary">Upload for Post-Disaster Assessment</button>
+      </div>
+    </div>
+    </div>
+</mat-tab>
+</mat-tab-group>
 </div>

@@ -1,22 +1,14 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { MatDialog } from '@angular/material/dialog';
 import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
 import { Observable } from 'rxjs';
 import { ThreatDataService } from 'src/app/shared/threat-data/threat-data.service';
 import { ApiService } from '../api.service';
 import { imageType } from '../imageType';
-import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
-import { HttpClient } from '@angular/common/http';
 import { TelloDroneService } from 'src/app/shared/tello-drone/tello-drone.service';
 import { UploadVerificationDialogComponent } from '../upload-verification-dialog/upload-verification-dialog.component';
 import { UploadDamageDialogComponent } from '../upload-damage-dialog/upload-damage-dialog.component';
-
-export interface DialogData {
-  data: ' ';
-}
 
 @Component({
   selector: 'upload-file',
@@ -27,22 +19,23 @@ export interface DialogData {
 export class UploadFileComponent implements OnInit {
   @Output() menuState!: String;
   @Output() newItemEvent = new EventEmitter<string>();
-  type : imageType[] = [];
+  cardStyle: any = {};
+  currentDate: Date = new Date();
+  downloadUrl: string;
+  downloadURL!: string;
   path!: String;
   latestImage!: String;
-  lockUploadClassification= true;
-  lockUploadAssessment= true;
+  lockUploadLocal= true;
   task!: AngularFireUploadTask;
   taskRef!: AngularFireStorageReference;
-  percentage!: Observable<number>;
   snapshot!: Observable<any>;
-  downloadURL!: string;
+  previewUrl: any = null;
   result: any;
+  selectedImage: File = null;
   threat: any;
-  currentDate: Date = new Date();
-  location!: string;
-  telloConnected = false;
-  currentLoc: string = '';
+  telloConnected = false; 
+  type : imageType[] = []; 
+  uploadProgress: Observable<number>;
 
   imgType:any = [
     {
@@ -55,150 +48,112 @@ export class UploadFileComponent implements OnInit {
 
 
   constructor(public dialog: MatDialog, private af: AngularFireStorage, private apiService:ApiService, 
-    private threatdata:ThreatDataService,  private db: AngularFireDatabase, private telloService: TelloDroneService, 
-    private http: HttpClient) {
-      ApiService
+    private threatdata:ThreatDataService, private telloService: TelloDroneService) {
   }
 
-  connect() {
+    // this section handles the drone controls
+connect() {
     if (this.telloService.connect().subscribe(res => console.log(res))){
       this.telloConnected = true;
     }
   }
-
-  takeoff() {
+takeoff() {
     this.telloService.takeoff().subscribe(res => console.log(res));
-    console.log("takeoff clicked!");
   }
-
-  photo() {
+photo() {
     this.telloService.photo().subscribe(res => console.log(res));
   }
-
-  land() {
+land() {
     this.telloService.land().subscribe(res => console.log(res));
   }
-
-  right() {
+right() {
     this.telloService.right().subscribe(res => console.log(res));
   }
-
-   left() {
+left() {
     this.telloService.left().subscribe(res => console.log(res));
   }
-
-  up() {
+up() {
     this.telloService.up().subscribe(res => console.log(res));
   }
-
-   down() {
+down() {
     this.telloService.down().subscribe(res => console.log(res));
   }
-
-  forward() {
+forward() {
     this.telloService.forward().subscribe(res => console.log(res));
   }
-
-  backward() {
+backward() {
     this.telloService.backward().subscribe(res => console.log(res));
   }
-
-  stop() {
+stop() {
     this.telloService.stop().subscribe(res => console.log(res));
   }
-
-  clockwise() {
+clockwise() {
     this.telloService.clockwise().subscribe(res => console.log(res));
   }
 
   ngOnInit() {
-    this.telloService.photo().subscribe((filename: string) => {
-      this.downloadURL = `../../../../../assets/${filename}`;
-    });
   }
 
-  openDialog(imgUrl: any, type: string) {
-    this.dialog.open(UploadDialogComponent, {
-      data: {
-        panelClass: 'custom-dialog-container'
-      },
-    },
-    );
-    if(type === JSON.stringify(this.imgType[1])){
-      this.apiService.classifyFire(imgUrl).subscribe(async response => {
-        this.type = response
-        this.threat = JSON.stringify(this.type)
-        this.threatdata.setThreatClassification(this.threat)
-      })
-    }
-    else{
-      this.apiService.classifyFlood(imgUrl).subscribe(async response => {
-        this.type = response
-        this.threat = JSON.stringify(this.type)
-        this.threatdata.setThreatClassification(this.threat)
-      })
-    }
-    }
-
-
-//   async scanImage($event:any){
-//     var file = $event.target.files[0];
-//     this.path = file;
-//     if (file!.type.split('/')[0] !== 'image') {
-//       console.error('unsupported file type');
-//       alert('Invalid Upload Format!')
-//       this.lockUploadLocal=true;
-//       return;}
-//     else {
-//     var storage = getStorage();
-//     var metadata = {
-//       customMetadata: {
-//         'application': 'Gotabang',
-//         'activity': 'Image Processing'
-//       }
-//     };
-
-//   //Empty folder before uploading new image
-//   const folderRef = this.af.refFromURL('gs://gotabang.appspot.com/images');
-//   folderRef.listAll().subscribe(result => {
-//     // For each file, delete it
-//     result.items.forEach(item => {
-//       item.delete().then(() => {
-//         console.log('File deleted successfully');
-//       }).catch(error => {
-//         console.log('Error deleting file:', error);
-//       });
-//     });
-//   });
-
-
-//   //Select File from Local Storage
-//   var imageRef = ref(storage, 'images/' + file.name);
-//   this.lockUploadLocal=false;
-//   uploadBytesResumable(imageRef, file, metadata)
-//   .then((snapshot) => {
-//     console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-//     console.log('File metadata:', snapshot.metadata);
-//   getDownloadURL(snapshot.ref).then((url) => {
-//       this.downloadURL = url;
-//       this.newItemEvent.emit(this.downloadURL);
-//     });
-//   }).catch((error) => {
-//     console.error('Upload failed', error);
-//   });
-// }
-//   }
-
-  async uploadImage() {
+// TELLO DRONE UPLOAD SECTION
+// this handles upload for classification and assesment
+async uploadImage() {
     this.dialog.open(UploadVerificationDialogComponent, {
       data: {
         panelClass: 'custom-dialog-container',
       },
     },
     );
-  }
+  }  
+async uploadImageAssessment() {
+    this.dialog.open(UploadDamageDialogComponent, {
+      data: {
+        panelClass: 'custom-dialog-container',
+      },
+    },
+    );
+}
 
-  async uploadImageAssessment() {
+// LOCAL UPLOAD SECTION
+// this handles the file selection
+onFileSelected(event): void {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewUrl = reader.result;
+      this.cardStyle = {
+        'background-image': `url(${this.previewUrl})`,
+        'background-size': 'cover',
+        'background-repeat': 'no-repeat',
+        'background-position': 'center',
+      };
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    this.selectedImage = event.target.files[0];
+  }
+uploadLocalImage(upload: string){
+    const filePath = `images/${this.selectedImage.name}`;
+    const fileRef = this.af.ref(filePath);
+    const task = this.af.upload(filePath, this.selectedImage);
+
+    this.uploadProgress = task.percentageChanges();
+
+    task.snapshotChanges().subscribe((snapshot) => {
+      if (snapshot.state === 'success') {
+        fileRef.getDownloadURL().toPromise().then((url) => {
+          this.downloadUrl = url;
+          console.log('File uploaded successfully. Download URL:', this.downloadUrl);
+          this.apiService.setImage(this.downloadUrl);
+        });
+      }
+    });
+
+    if (upload=='classfication'){
+    this.dialog.open(UploadVerificationDialogComponent, {
+      data: {
+        panelClass: 'custom-dialog-container',
+      },
+    },
+    );
+  } else if (upload=='damage') {
     this.dialog.open(UploadDamageDialogComponent, {
       data: {
         panelClass: 'custom-dialog-container',
@@ -206,40 +161,39 @@ export class UploadFileComponent implements OnInit {
     },
     );
   }
-
-    retrieveImageClassification(){
-      const storageRef = this.af.refFromURL('gs://gotabang.appspot.com/images');
-
-      storageRef.listAll().subscribe((res) => {
-        const latestImageRef = res.items[res.items.length - 1];
-        latestImageRef.getDownloadURL().then((url: any) => {
-          if(url){
-          this.downloadURL = url;
-          this.lockUploadClassification=false;
-          this.newItemEvent.emit(this.downloadURL);
-          }
-          console.log(url);
-        });
-      });
-    }
-
-    retrieveImageAssessment(){
-      const storageRef = this.af.refFromURL('gs://gotabang.appspot.com/images');
-
-      storageRef.listAll().subscribe((res) => {
-        const latestImageRef = res.items[res.items.length - 1];
-        latestImageRef.getDownloadURL().then((url: any) => {
-          if(url){
-          this.downloadURL = url;
-          this.lockUploadAssessment=false;
-          this.newItemEvent.emit(this.downloadURL);
-          }
-          console.log(url);
-        });
-      });
-
-
-    }
-
 }
 
+// MOBILE UPLOAD SECTION
+// this handles retrievement of photo from the database
+retrieveImage(){
+  const storageRef = this.af.refFromURL('gs://gotabang.appspot.com/tello_images');
+  storageRef.listAll().subscribe((res) => {
+    const latestImageRef = res.items[res.items.length - 1];
+    latestImageRef.getDownloadURL().then((url: any) => {
+      if(url){
+      this.downloadURL = url;
+      this.newItemEvent.emit(this.downloadURL);
+      this.apiService.setImage(url);
+      }
+      console.log(url);
+    });
+  });
+}
+uploadMobileImage(upload: string){
+  if (upload=='classfication'){
+    this.dialog.open(UploadVerificationDialogComponent, {
+      data: {
+        panelClass: 'custom-dialog-container',
+      },
+    },
+    );
+  } else if (upload=='damage') {
+    this.dialog.open(UploadDamageDialogComponent, {
+      data: {
+        panelClass: 'custom-dialog-container',
+      },
+    },
+    );
+  }
+}
+    }

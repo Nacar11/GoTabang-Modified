@@ -1,0 +1,46 @@
+mat-card{
+    width: 45%;
+    height: 30%;
+    text-align: center;
+    background-color: rgb(32,45,69,1);
+}
+
+mat-card-content {
+    margin-top: 10%;
+}
+
+button{
+    background-color: rgb(16, 16, 16);
+    color: white;
+    margin: 30px 20px 0px 0px;
+}
+
+label{
+    color: white;
+}
+
+.mat-card-image.training{
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 90px;
+}
+
+.mat-card-image.testing{
+    width: 48%;
+    margin-top: 20px;
+    margin-left: 125px;
+}
+
+.train-input{
+    display: ruby;
+}
+
+.train-header{
+    color: white;
+}
+
+.train-section{
+    margin-left: 40px;
+    margin-top: 40px;
+    height: 800px;
+}
