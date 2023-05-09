@@ -17,7 +17,7 @@ import 'firebase/storage';
 export class UploadVerificationDialogComponent {
   type : imageType[] = [];
   threat: any;
-  geolocation = '';
+  geolocation: any;
   imgType:any = [
     {
       Type: 'Flood'
@@ -72,6 +72,7 @@ constructor(public dialog: MatDialog, private af: AngularFireStorage, private ht
         const city = address.city || address.town || address.village;
         const region = address.region;
         this.geolocation = `${city}, ${region}`;
+        console.log("geolocation on dialog: ", this.geolocation);
       })
       .catch(error => console.log(error));
   }
@@ -94,22 +95,18 @@ constructor(public dialog: MatDialog, private af: AngularFireStorage, private ht
     const storageRef = firebase.storage().ref();
     const imageRef = storageRef.child('images/tello_photo2023.png');
 
-    if (this.apiService.getImage()==null)
+    if (this.apiService.getImage()==null){
     try {
-      await task;
-      this.dialog.open(UploadDialogComponent, {
-        data: {
-          panelClass: 'custom-dialog-container'
-        },
-      },);
       const downloadURL = await fileRef.getDownloadURL().toPromise();
       const type = await this.apiService.classifyImage(downloadURL).toPromise();
+      console.log("geolocation inside call: ", this.geolocation)
       const metadata = {
         customMetadata: {
           fullAddress: this.geolocation,
+          fullAddress2: this.geolocation.toString(),
         }
       };
-  
+      imageRef.updateMetadata(metadata)
       if(JSON.stringify(type) === JSON.stringify(this.imgType[0])) {
         console.log('Type: ', type)
         console.log('Type2: ', this.imgType[0])
@@ -145,25 +142,19 @@ constructor(public dialog: MatDialog, private af: AngularFireStorage, private ht
           await fireLowPath.put(response);
         } else if(JSON.stringify(type) == JSON.stringify(this.fireType[2])){
           await fireMediumPath.put(response);
-        }
+        }  
       }
-      imageRef.updateMetadata(metadata)
-  .then(() => {
-  })
-  .catch((error) => {
-    console.error('Error updating metadata:', error);
-  });
-    } catch (error) {
-      console.error('Error uploading file:', error);
-    }
-    else (this.apiService.getImage()!=null)
-    try {
-      await localtask;
       this.dialog.open(UploadDialogComponent, {
         data: {
           panelClass: 'custom-dialog-container'
         },
       },);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
+  }
+    else if (this.apiService.getImage()!=null){
+    try {
       const downloadURL = this.apiService.getImage();
       const type = await this.apiService.classifyImage(downloadURL).toPromise();
       
@@ -196,7 +187,7 @@ constructor(public dialog: MatDialog, private af: AngularFireStorage, private ht
         const threat = JSON.stringify(fireType);
         this.threatdata.setThreatClassification(threat);
   
-        if(JSON.stringify(type) == JSON.stringify(this.fireType[0])){
+      if(JSON.stringify(type) == JSON.stringify(this.fireType[0])){
           await fireHighPath.put(response);
         } else if(JSON.stringify(type) == JSON.stringify(this.fireType[1])){
           await fireLowPath.put(response);
@@ -204,9 +195,15 @@ constructor(public dialog: MatDialog, private af: AngularFireStorage, private ht
           await fireMediumPath.put(response);
         }
       }
+      this.dialog.open(UploadDialogComponent, {
+        data: {
+          panelClass: 'custom-dialog-container'
+        },
+      },);
     } catch (error) {
       console.error('Error uploading file:', error);
     }
+  }
   }
   
 }  

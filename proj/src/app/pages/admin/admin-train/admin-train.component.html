@@ -1,4 +1,5 @@
 <div class="train-section">
+<<<<<<< HEAD
     <div class="train-header">
         <h2 class="upload-title">Data Training</h2>
         <p class="upload-sub">Displays The Data Statistics</p>
@@ -36,3 +37,42 @@
         </div>
     </div>
     </div>
+=======
+  <div class="train-header">
+      <h2 class="upload-title">Data Training</h2>
+      <p class="upload-sub">Displays The Data Statistics</p>
+    </div>
+
+    <div class="train-input">
+    <mat-card>
+      <img class="mat-card-image training" mat-card-image src="https://docs.breezometer.com/api-documentation/assets/img/heatmap_new_old.79038102.gif">
+      <mat-card-content>
+          <input type="text" [(ngModel)]="trainPath" directory />
+      </mat-card-content>
+    </mat-card> 
+    
+    <mat-card style="margin-left: 20px;">
+      <img class="mat-card-image testing" mat-card-image src="https://www.zirous.com/wp-content/uploads/2020/12/Power-BI-Premium-Gif.gif">
+      <mat-card-content>
+          <input type="text" [(ngModel)]="testPath" directory />
+      </mat-card-content>
+    </mat-card>  
+  </div>
+
+  <div class="button-list">
+      <button (click)="trainFireFlood()"class="sub-btn" mat-flat-button>Disaster Classifier</button>
+      <button (click)="trainFire()"class="sub-btn" mat-flat-button >Fire Threat</button>
+      <button (click)="trainFlood()"class="sub-btn" mat-flat-button>Flood Severity</button>
+      <button (click)="trainDamage()"class="sub-btn" mat-flat-button>Post Damage Assessment</button>
+  </div>
+
+  <div class="textarea-container">
+    <textarea *ngIf="result"[value]="result" readonly></textarea>
+    <div class="loading-spinner" *ngIf="loading">
+        <div class="spinner-grow" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+      </div>
+  </div>
+  </div>
+>>>>>>> drone_controls
