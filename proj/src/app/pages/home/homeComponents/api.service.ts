@@ -9,7 +9,8 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
 })
 export class ApiService {
   url = 'http://127.0.0.1:7777/';
-  geoAddress: string;
+  imageurl: string;
+  location: string;
 
     constructor(private http: HttpClient) {
      }
@@ -29,17 +30,13 @@ export class ApiService {
     return this.http.get<imageType[]>(this.url+`fire?image=${imgUrl}`)
   }
 
+
   classifyFlood(imgUrl:any){
     return this.http.get<imageType[]>(this.url+`flood?image=${imgUrl}`)
   }
 
   classifyDamage(imgUrl:any){
     return this.http.get<imageType[]>(this.url+`damage?image=${imgUrl}`)
-  }
-
-  setAddress(address: string) {
-    this.geoAddress = address;
-    console.log(address);
   }
 
   retrainFlood(): Observable<any> {
@@ -57,7 +54,34 @@ export class ApiService {
     return this.http.get<any>(url);
   }
 
-  getAddress() {
-    return this.geoAddress;
+  setImage(url: string) {
+    this.imageurl = url;
+    console.log("image url in service: ", this.imageurl);
+  }
+
+  getImage() {
+     return this.imageurl;
+  }
+
+  setLocation(loc: string) {
+    this.location = loc;
+    console.log("location in service: ", this.location);
+  }
+
+  getLocation() {
+     return this.location;
+  }
+
+  trainFire(trainPath: string, testPath: string){
+    return this.http.get<any>(this.url+`trainFire?string_1=${trainPath}&string_2=${testPath}`)
+  }
+  trainFireFlood(trainPath: string, testPath: string){
+    return this.http.get<any>(this.url+`trainFireFlood?string_1=${trainPath}&string_2=${testPath}`)
+  }
+  trainFlood(trainPath: string, testPath: string){
+    return this.http.get<any>(this.url+`trainFlood?string_1=${trainPath}&string_2=${testPath}`)
+  }
+  trainDamage(trainPath: string, testPath: string){
+    return this.http.get<any>(this.url+`trainDamage?string_1=${trainPath}&string_2=${testPath}`)
   }
 }

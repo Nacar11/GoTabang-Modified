@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -23,7 +24,7 @@ export class ThreatDataService {
   private userLocationSource = new BehaviorSubject<string>('');
   loc = this.userLocationSource.asObservable();
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   setDisasterClassification(disasterClassification: string) {
     this.disasterClassificationSource.next(disasterClassification);
@@ -48,6 +49,4 @@ export class ThreatDataService {
   setImageDamage(dImg: string) {
     this.damageSource.next(dImg);
   }
-
-
 }

@@ -6,34 +6,32 @@ form-control{
   background-color: darkslategray;
 }
 
-.btn{
-  margin: 0px 10px;
+mat-tab-group {
+  padding: 10px;
 }
 
-.btn-main-takeoff{
-  background-color: #0c0e0f;
+mat-tab, .btn-main-takeoff, .btn-main-land, .btn-main-photo, .btn-main-connect, .btn-directions{
   color: white;
 }
 
-.btn-main-land{
-  background-color: #881212;
-  color: white;
-}
-
-.btn-main-photo{
-  background-color: #155407;
-  color: rgb(255, 255, 255);
+mat-icon.mat-icon{
+  transform: scale(1.5);
+  margin: 0%;
+  padding: 0%
 }
 
 .btn-main-connect{
   background-color: #db9c09;
-  color: white;
+  border-radius: 20px;
+  padding-right: 5px;
 }
 
 .btn-directions{
-  background-color: #ededee;
-  color: rgb(15, 14, 14);
-  width: 36%;
+  background-color: rgb(18, 17, 17);
+  border-radius: 50%;
+  width: 10px;
+  height: 60px;
+  margin-bottom: 0px;
 }
 
 .btn-submit{
@@ -41,14 +39,67 @@ form-control{
   width: 76%;
 }
 
-.btn-submit-set{
+.btn-submit-set-drone{
   margin: 0px 8px;
+  text-align: center;
+  margin-top: 10%;
+}
+.btn-set1.right{
+  margin-top: 30px;
+}
+
+.btn-set1.right, .btn-set2.right, .btn-set3.right{
+  text-align: center;
 }
 
 .disabled-button {
-  background-color: #ccc;
+  background-color: #1e1d1d;
   color: #666;
   cursor: not-allowed;
+}
+
+.drone-img {
+  width: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 450px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.drone-img-png{
+  background-size: contain;
+}
+
+.drone-btn {
+  margin: 7px;
+  font-size: 16px;
+  border: none;
+}
+
+.drone-btn.text {
+  background-color: transparent;
+}
+
+.drone-controls{
+  display: flex;
+}
+
+.drone-buttons.left{
+  margin-left: 7px;
+  width: 150px;
+  text-align: center;
+}
+
+.drone-buttons.right{
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.drone-buttons-header{
+  display: ruby;
+  margin-left: 10px;
 }
 
 img{
@@ -66,7 +117,8 @@ img.disaster{
 .text-left{
   margin: 10px;
   padding: 10px;
-  height: 500px;
+  height: 700px;
+  overflow: hidden;
 }
 
 .upload-header{
@@ -80,8 +132,6 @@ img.disaster{
 .upload-firebase{
   height: 20rem;
   width: 60%;
-  border-style: dashed;
-  border-color: wheat;
   margin-left: 20px;
   margin-right: 20px;
   padding: 0px 0px 10px 5px;
@@ -100,59 +150,77 @@ img.disaster{
 }
 
 .upload-sub{
+  margin-top: 5px;
   color: rgb(182, 180, 180);
+  text-decoration: none;
 }
 
 .upload-title{
   margin-bottom: 0%;
 }
 
-/* Tello-Drone Controls */
 
-.drone-btn {
-  margin: 7px;
-  padding: 10px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-}
+/* FOR LOCAL STORAGE */
 
-.drone-btn:hover {
-  cursor: pointer;
-  background-color: #3e8e41;
-}
-
-.drone-btn:active {
-  background-color: #3e8e41;
-  transform: translateY(2px);
-}
-
-.drone-controls{
-  display: flex;
-}
-
-.drone-buttons{
-  margin-left: 7px;
+mat-card-content{
+  height: 500px;
   width: 500px;
 }
-.drone-buttons-header{
-  display: ruby;
-  margin-left: 10px;
+
+.btn-submit-set-local{
+  margin: 0px 8px;
+  text-align: left;
+  margin-top: 5px;
 }
 
-/* Drone Photo */
-.drone-img {
-  width: 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 50%;
-  height: 400px;
+.card {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.form-control{
+  width: 76%;
+}
+
+.image-preview {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.local-controls{
+  margin-top: 15px;
   margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.upload-local-img-priv{
+  max-width: 100%;
+  max-height: 300px;
+}
+
+.upload-local{
+  margin-top: 5%;
+  display: inline-flex;
+  margin-left: 25px;
+}
+
+/* FOR MOBILE  */
+.btn-retrieve{
+  width: 380px;
+}
+
+.btn-submit-mobile1, .btn-submit-mobile2{
   margin-top: 20px;
 }
-
-.drone-img-png{
-  background-size: contain;
-}
-
-
