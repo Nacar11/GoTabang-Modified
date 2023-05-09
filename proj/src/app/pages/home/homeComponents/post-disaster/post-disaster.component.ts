@@ -53,12 +53,13 @@ export class PostDisasterComponent implements OnInit {
       this.folders[0].info = damageType;
       if(damageType != null){
         storageRef.getMetadata().subscribe((metadata) => {
-          if (metadata! || metadata == null || metadata == undefined){
-            this.folders[1].info = this.currentDate.toString();
-          }
+          if (metadata.customMetadata){
           this.folders[2].info = metadata.customMetadata.fullAddress;
           this.folders[1].info = metadata.timeCreated;
-          console.log("post disaster folder", metadata)
+          } else if (metadata.customMetadata! || metadata.customMetadata == null || metadata.customMetadata == undefined){
+            this.folders[2].info = 'Geolocation Not Applied';
+            this.folders[1].info = metadata.timeCreated;
+          }
         });
       }
 

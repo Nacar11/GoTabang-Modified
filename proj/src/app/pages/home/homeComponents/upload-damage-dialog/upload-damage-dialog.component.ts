@@ -59,6 +59,7 @@ showPosition(position) {
             panelClass: 'custom-dialog-container'
           },
         },)
+        console.log("geolocation inside call: ", this.geolocation)
         const metadata = {
           customMetadata: {
             fullAddress: this.geolocation,

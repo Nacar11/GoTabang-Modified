@@ -70,4 +70,17 @@ export class ApiService {
   getLocation() {
      return this.location;
   }
+
+  trainFire(trainPath: string, testPath: string){
+    return this.http.get<any>(this.url+`trainFire?string_1=${trainPath}&string_2=${testPath}`)
+  }
+  trainFireFlood(trainPath: string, testPath: string){
+    return this.http.get<any>(this.url+`trainFireFlood?string_1=${trainPath}&string_2=${testPath}`)
+  }
+  trainFlood(trainPath: string, testPath: string){
+    return this.http.get<any>(this.url+`trainFlood?string_1=${trainPath}&string_2=${testPath}`)
+  }
+  trainDamage(trainPath: string, testPath: string){
+    return this.http.get<any>(this.url+`trainDamage?string_1=${trainPath}&string_2=${testPath}`)
+  }
 }
