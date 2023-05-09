@@ -153,13 +153,7 @@ uploadLocalImage(upload: string){
       },
     },
     );
-<<<<<<< HEAD
-  }
-
-  async uploadDisaster() {
-=======
   } else if (upload=='damage') {
->>>>>>> drone_controls
     this.dialog.open(UploadDamageDialogComponent, {
       data: {
         panelClass: 'custom-dialog-container',
@@ -169,48 +163,6 @@ uploadLocalImage(upload: string){
   }
 }
 
-<<<<<<< HEAD
-  // showPosition(position) {
-  //   var x = document.getElementById("upload-location");
-  //   var latitude = position.coords.latitude;
-  // var longitude = position.coords.longitude;
-  // const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
-  // fetch(url)
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     const address = data.address;
-  //     const city = address.city || address.town || address.village;
-  //     const region = address.region;
-  //     const country = address.country;
-  //     const fullAddress = `${city}, ${region}, ${country}`;
-  //     x.innerHTML = fullAddress;
-  //     console.log(fullAddress);
-  //     this.currentLoc = fullAddress;
-  //   })
-  //   .catch(error => console.log(error));
-  //   console.log(this.currentLoc)
-  //   this.threatdata.setLocation(this.currentLoc)
-  // }
-
-  showPosition(position) {
-    var x = document.getElementById("upload-location");
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
-    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const address = data.address;
-        const city = address.city || address.town || address.village;
-        const region = address.region;
-        const country = address.country;
-        const fullAddress = `${city}, ${region}, ${country}`;
-        x.innerHTML = fullAddress;
-        console.log(fullAddress);
-        this.threatdata.setUserLocation(fullAddress)
-      })
-      .catch(error => console.log(error));
-=======
 // MOBILE UPLOAD SECTION
 // this handles retrievement of photo from the database
 retrieveImage(){
@@ -242,7 +194,6 @@ uploadMobileImage(upload: string){
       },
     },
     );
->>>>>>> drone_controls
   }
 }
     }

@@ -30,6 +30,7 @@ export class ApiService {
     return this.http.get<imageType[]>(this.url+`fire?image=${imgUrl}`)
   }
 
+
   classifyFlood(imgUrl:any){
     return this.http.get<imageType[]>(this.url+`flood?image=${imgUrl}`)
   }
@@ -69,5 +70,18 @@ export class ApiService {
 
   getLocation() {
      return this.location;
+  }
+
+  trainFire(trainPath: string, testPath: string){
+    return this.http.get<any>(this.url+`trainFire?string_1=${trainPath}&string_2=${testPath}`)
+  }
+  trainFireFlood(trainPath: string, testPath: string){
+    return this.http.get<any>(this.url+`trainFireFlood?string_1=${trainPath}&string_2=${testPath}`)
+  }
+  trainFlood(trainPath: string, testPath: string){
+    return this.http.get<any>(this.url+`trainFlood?string_1=${trainPath}&string_2=${testPath}`)
+  }
+  trainDamage(trainPath: string, testPath: string){
+    return this.http.get<any>(this.url+`trainDamage?string_1=${trainPath}&string_2=${testPath}`)
   }
 }
