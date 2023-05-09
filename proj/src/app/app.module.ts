@@ -12,6 +12,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { environment as env } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 // Firebase Imports
 import { AngularFireModule } from '@angular/fire/compat'
@@ -63,6 +64,7 @@ import {UploadDamageDialogComponent} from './pages/home/homeComponents/upload-da
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { UploadVerificationDialogComponent } from './pages/home/homeComponents/upload-verification-dialog/upload-verification-dialog.component';
+import { AdminTrainComponent } from './pages/admin/admin-train/admin-train.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,8 @@ import { UploadVerificationDialogComponent } from './pages/home/homeComponents/u
     AdminStatsComponent,
     AdminRetrainComponent,
     SigninComponent,
-    UploadVerificationDialogComponent
+    UploadVerificationDialogComponent,
+    AdminTrainComponent
   ],
   imports: [
     BrowserModule,
@@ -97,6 +100,7 @@ import { UploadVerificationDialogComponent } from './pages/home/homeComponents/u
     HighlightModule,
     FontAwesomeModule,
     FormsModule,
+    NgxFileDropModule,
     ReactiveFormsModule,
     AngularFireStorageModule,
     AuthModule.forRoot({

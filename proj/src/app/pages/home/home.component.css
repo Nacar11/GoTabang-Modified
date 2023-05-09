@@ -73,11 +73,11 @@ mat-tab-group {
 }
 
 img.gotabang-icon{
-  width: 50%;
+  width: 45%;
   position: absolute;
   right: 0%;
-  top: 13%;
-  animation: float 5s ease-in-out infinite;
+  top: -1%;
+  animation: float 4s ease-in-out infinite;
   box-shadow: none;
   overflow: hidden;
 }
@@ -114,8 +114,9 @@ p {
 }
 
 .scs-icon{
-  width: 5%;
-  padding: 0px 0px 12px 5px;
+  width: 5.5%;
+  padding-bottom: 0px;
+  padding-top: 10px;
 }
 
 .usjr-icon{
